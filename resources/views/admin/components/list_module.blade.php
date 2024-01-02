@@ -131,6 +131,18 @@
                                 </ul>
                             </li>
                             @endif
+                            @if($v->permission=="module_popup")
+                            <li class="nav-parent">
+                            
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">Quản lý popup</span></a>
+                            
+                                <ul class="children nav">
+                                    <li><a href="{{ URL::to('admin/manage-popup') }}">Danh sách popup</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endif
                             
                             @endforeach
                             @elseif($data_admin->type_account=='sales')

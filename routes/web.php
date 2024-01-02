@@ -96,9 +96,17 @@ Route::group(['prefix' => 'admin'], function () {
         return view('admin.page.admin_product_order');
     })->middleware('auth.roles2:module_product_order');
 
+    
+    Route::get('manage-exchange', function () {
+        return view('admin.page.admin_exchange');
+    })->middleware('auth.roles2:module_exchange');
     Route::get('manage-period', function () {
         return view('admin.page.admin_period');
     })->middleware('auth.roles2:module_exchange');
+
+    Route::get('manage-popup', function () {
+        return view('admin.page.admin_popup');
+    })->middleware('auth.roles2:module_popup');
 
     // Route::get('manage-admin-deal', function () {
     //     return view('admin.page.admin_exchange');

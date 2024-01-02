@@ -55,7 +55,7 @@ function show_product_order(page) {
                                 <td>${v.quantity}</td>
                                 <td>${money(v.total_price)}</td>
                                 <td>${v.discount}%</td>
-                                <td>${v.total_result}</td>
+                                <td>${money(v.total_result)}</td>
                                 <td>${text_status_order(v.status)}</td>
                                 <td>${v.customer_fullname}</td>
                                 <td>${v.customer_phone}</td>
@@ -67,9 +67,15 @@ function show_product_order(page) {
                                     <ul style="color:blue;" class="dropdown-menu">
                                         <li><a class="modal_cancel" 
                                                 data-id="${v.id_order}"
-                                                data-id_customer="${v.id_customer}"
-                                                data-customer_fullname="${v.customer_fullname}"
-                                                data-customer_phone="${v.customer_phone}"
+                                                data-id_customer="${
+                                                    v.id_customer
+                                                }"
+                                                data-customer_fullname="${
+                                                    v.customer_fullname
+                                                }"
+                                                data-customer_phone="${
+                                                    v.customer_phone
+                                                }"
                                                 data-code="${v.code}"
                                             >
                                         Hủy đơn hàng</a></li>

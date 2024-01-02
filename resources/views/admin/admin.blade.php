@@ -27,7 +27,7 @@
         $data_admin = Session::get('data_admin');
         $urlapi = env('API_WEB') ?? route('call_api');
         $urlserver = env('API_IMG');
-        $urlapi_2 = env('API_WEB') ?? route('call_api'); //"https://api-link.tikiskta.com";//env('API_WEB') ?? route('call_api');
+        $urlapi_2 = "http://qtc.test/AB_TIKIL/api_tikil/api/";//env('API_WEB') ?? route('call_api'); //"https://api-link.tikiskta.com";//env('API_WEB') ?? route('call_api');
         $xtk = env('XTK');
         $socket = env('SOCKET');
         

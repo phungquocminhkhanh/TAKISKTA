@@ -24,12 +24,17 @@
                         </span>
                     </div>
                     <div class="clients-list">
-
+                        <ul class="nav nav-tabs tab-border-top-danger">
+                            <li class="active">
+                                <button type="button" id="modal_add" class="btn btn-warning">+</button>
+                            </li>
+                        </ul>
                         <ul class="nav nav-tabs tab-border-top-danger mt-2">
                             <div class="form-group col-md-2">
                                 <label for="inputState">Khu vực</label>
                                 <br />
                                 <select onchange="show_period(1)" id="id_exchange_filter" style="height:40px;width: 150px;">
+                                    <option value="">Tất cả</option>
                                     <option value="45">Sang trọng</option>
                                     <option value="46">Đồ điện tử</option>
                                     <option value="47">Đồ gia dụng</option>
@@ -41,7 +46,7 @@
                             <div class="form-group col-md-2">
                                 <label for="inputState">Ngày</label>
                                 <br />
-                                <input type="date">
+                                <input type="date" id="date_begin" onchange="show_period(1)">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="inputState">Trạng thái</label>
@@ -69,6 +74,7 @@
                                                 <td>Khuc vực</td>
                                                 <td>Thời gian bắt đầu</td>
                                                 <td>Thời gian kết thức</td>
+                                                <td>Giảm giá</td>
                                                 <td>Trạng thái</td>
                                                 <td>Ngày tạo</td>
                                                 <td></td>
@@ -94,31 +100,92 @@
 
 
 
-    <div class="modal" id="cancel_modal" role="dialog">
-        <div class="modal-dialog" role="document">
+    <div id="create_modal" class="modal fade">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="modal-title"><strong>Đơn hàng : </strong><span id="code_cancel"></span></h2>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <center>
+                        <h2 class="modal-title" style="color:black"><strong>Thời gian</strong></h2>
+                    </center>
                 </div>
-                <div class="modal-body" id="content_alert">
-                    <form id="cancel_form">
+                <div class="modal-body">
 
-                        <div class="inqbox-content">
+                    <form id="insert_form">
+                        <label>Khu vực</label>
+                        <select id="id_exchange" class="form-control">
+                            <option value="">chọn</option>
+                            <option value="45">Sang trọng</option>
+                            <option value="46">Đồ điện tử</option>
+                            <option value="47">Đồ gia dụng</option>
+                            <option value="48">Mỹ phẩm chính hảng</option>
+                        </select>
+                        <br />
+                        
+                        <?php $now = date("Y-m-d"); ?>
+                        <div class="row">
+                            
+                            <div class="col-12 col-sm-6">
+                                <label>Thời gian bắt đầu</label>
+                                <input type="date" id="d_start" class="form-control" value="{{$now}}">
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <label>Giờ</label>
+                                <select id="h_start" class="form-control">
+                                    @for($i = 0 ; $i <= 23 ; $i++)
 
-                            <label>Lý do hủy</label>
-                            <textarea type="text" id="description" class="form-control"></textarea>
-                            <br />
-                            <br />
-                            <button type="button" name="edit" id="btn_cancel" class="btn btn-success">Hủy đơn
-                                hàng</button>
+                                        <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i : $i}}</option>
+                                    @endfor
+                                </select> 
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <label>Phút</label>
+                                <select id="m_start" class="form-control">
+                                    @for($i = 0 ; $i <= 59 ; $i++) 
+                                    <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i : $i}}</option>
+                                    @endfor
+                                </select>
+                            </div>
                         </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <label>Thời gian kết thúc</label>
+                                <input type="date" id="d_end" class="form-control" value="{{$now}}">
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <label>Giờ</label>
+                                <select id="h_end" class="form-control">
+                                    @for($i = 0 ; $i <= 23 ; $i++) <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i : $i}}</option>
+                                        @endfor
+                                </select>
+                            </div>
+                            <div class="col-6 col-sm-3">
+                                <label>Phút</label>
+                                <select id="m_end" class="form-control">
+                                    @for($i = 0 ; $i <= 59 ; $i++) <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i : $i}}</option>
+                                        @endfor
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        <label>Giảm giá (%)</label>
+                        <input type="number" id="discount" class="form-control" min=1 max=100>
+                        <br />
+                        <label>Trạng thái</label>
+                        <select id="status" class="form-control">
+                            <option value="open">Mở</option>
+                            <option value="close">Đóng</option>
+                        </select>
+                        <br />
+                        <br />
+                        <button type="button" name="insert" id="btn_insert_period" class="btn btn-success btn_insert">Thêm</button>
+
                     </form>
                 </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" id="btn_slose_money_withdraw" class="btn btn-default"
-                    data-dismiss="modal">Đóng</button>
+                <div class="modal-footer">
+                    <button type="button" id="close_modol_insert" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
             </div>
         </div>
     </div>

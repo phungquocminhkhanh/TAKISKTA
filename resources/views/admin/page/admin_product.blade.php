@@ -113,7 +113,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" id="insert_form">
-                        <label>Danh mục</label>
+                        <label>Khu vực</label>
                         <select id="id_exchange" class="form-control">
                             <option value="">Tất cả</option>
                             <option value="45">Sang trọng</option>

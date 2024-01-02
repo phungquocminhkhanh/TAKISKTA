@@ -210,6 +210,10 @@
                         <input type="text" id="customer_name" class="form-control" />
                         <small id="ercustomer_name" class="text-danger"></small>
                         <br />
+                        <label>Tên doanh nghiệp (<font style="color: red">*</font>)</label>
+                        <input type="text" id="company_name" class="form-control" />
+                        <small id="ercompany_name" class="text-danger"></small>
+                        <br />
                         <label>Số điện thoại: </label>
                         <input type="text" id="customer_phone" name="customer_phone"
                             onkeypress='return event.charCode >= 48 && event.charCode <= 57'
@@ -284,6 +288,10 @@
                         <label>Tên khách hàng (<font style="color: red">*</font>)</label>
                         <input type="text" name="customer_name" id="ecustomer_name" class="form-control" readonly/>
                         <small id="eercustomer_name" class="text-danger"></small>
+                        <br />
+                        <label>Tên doanh nghiệp</label>
+                        <input type="text" id="ecompany_name" class="form-control" />
+                        <small id="eercompany_name" class="text-danger"></small>
                         <br />
                         <label>Số điện thoại </label>
                         <input type="tel" id="ecustomer_phone" name="customer_phone"

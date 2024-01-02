@@ -201,11 +201,10 @@ $(document).ready(function () {
 
         let img_product = $("#img_product").prop("files")[0];
         if (img_product != "") {
-            console.log(1);
+           
             formData.append("img", img_product);
         }
 
-        console.log(img_product);
         $.ajax({
             url: urlapi_2,
             method: "post",

@@ -115,6 +115,8 @@ function edit_customer(id_customer) {
                     if ($("#type_admin").val() == "3") {
                         $("#update_customer_form input").prop("readonly", true);
                     }
+                    
+                    $("#ecompany_name").val(v.company_name);
                 });
             }
         },
@@ -462,7 +464,7 @@ $(document).ready(function () {
         formData.append("customer_account_no", $("#customer_account_no").val());
         formData.append("customer_account_holder",$("#customer_account_holder").val());
         formData.append("customer_password_payment",$("#customer_password_payment").val());
-
+        formData.append("company_name", $("#company_name").val());
         $.ajax({
             url: urlapi,
             method: "post",
@@ -511,7 +513,7 @@ $(document).ready(function () {
             "customer_password_payment",
             $("#ecustomer_password_payment").val()
         );
-
+        formData.append("company_name", $("#ecompany_name").val());    
         $.ajax({
             url: urlapi,
             method: "post",
