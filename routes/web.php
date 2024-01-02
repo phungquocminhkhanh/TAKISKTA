@@ -39,10 +39,7 @@ Route::get('chat-subiz-ios', function () {
 
 Route::post('call_api', [\App\Http\Controllers\loginController::class, 'call_api'])->name('call_api');
 
-Route::get('/', function () {
-    return view('admin.page.login');
-})->name('admin_login');
-Route::get('/admin', function () {
+Route::get('/TIKISKTA-@dmin', function () {
     return view('admin.page.login');
 })->name('admin_login');
 
