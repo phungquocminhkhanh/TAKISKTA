@@ -1,14 +1,23 @@
 var _type_manager = "";
 var _id_introduce = "";
 function show_introduce(page) {
+
+    let id_account = "";
+    if ($("#type_admin").val() == "1" || $("#type_admin").val() == "2") {
+        id_account = $("#id_account_filter").val();
+    } else {
+        id_account = $("#id_account").val();
+    }
+
+
     let data_filter = {
         detect: "introduce_manager",
         type_manager: "list",
         page: page,
         limit: 10,
-        id_account: $("#id_account_filter").val(),
+        id_account: id_account,
         status: $("#status_filter").val(),
-        filter : $("#key_search").val()
+        filter: $("#key_search").val(),
     };
     console.log(data_filter);
     $.ajax({
@@ -19,10 +28,28 @@ function show_introduce(page) {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
         success: function (data) {
-            console.log(data);
+          
             let output = "";
+            let btn_dieuhanh = "";
             if (data.success == "true") {
                 $.each(data.data, function (k, v) {
+                    btn_dieuhanh = "";    
+                    if ($("#type_admin").val() == "1") {
+                        btn_dieuhanh = `<div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
+                                        <span class="caret"></span></button>
+                                        <ul style="color:blue;" class="dropdown-menu">
+                                            <li><a class="modal_edit" 
+                                                    data-id="${v.id}"
+                                                    data-id_account="${v.id_account}"
+                                                    data-quantity="${v.quantity}"
+                                                    data-status="${v.status}"
+
+                                                >
+                                            Sửa</a></li>
+                                        </ul>
+                                    </div>`;
+                    }
                     output += `
                         <tr>
                                 <td style="width:4%;">${page * 10 - 9 + k}</td>
@@ -33,24 +60,7 @@ function show_introduce(page) {
                                 <td>${text_status_open_close(v.status)}</td>
                                 <td>${v.created}</td>
                                 <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
-                                        <span class="caret"></span></button>
-                                        <ul style="color:blue;" class="dropdown-menu">
-                                            <li><a class="modal_edit" 
-                                                    data-id="${v.id}"
-                                                    data-id_account="${
-                                                        v.id_account
-                                                    }"
-                                                    data-quantity="${
-                                                        v.quantity
-                                                    }"
-                                                    data-status="${v.status}"
-
-                                                >
-                                            Sửa</a></li>
-                                        </ul>
-                                    </div>
+                                    ${btn_dieuhanh}
                                 </td>
                         </tr>
                     `;
@@ -93,6 +103,7 @@ $(document).ready(function () {
     show_sale();
     $("#modal_add").on("click", function () {
         _type_manager = "add";
+        $("#id_account_add").prop("disabled", false);
         $("#add_modal").modal("show");
     });
     $("#table_introduce").on("click", ".modal_edit", function () {
@@ -102,6 +113,7 @@ $(document).ready(function () {
         let quantity = $(this).data("quantity");
         
         $("#id_account_add").find("option[value='" + id_account + "']").prop("selected",true);
+        $("#id_account_add").prop("disabled",true);
         $("#quantity").val(quantity);
 
         $("#add_modal").modal("show");

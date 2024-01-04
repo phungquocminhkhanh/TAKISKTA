@@ -365,7 +365,7 @@ function show_account(page) {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
         success: function (response) {
-            console.log(response);
+           
             let tt = 0;
             tt = response.total;
             let btn_dieuhanh = "";

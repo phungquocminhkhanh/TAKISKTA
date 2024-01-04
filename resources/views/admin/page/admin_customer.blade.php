@@ -20,7 +20,7 @@
                     <div class="input-group">
                         <input type="text" placeholder="Nhập tên, số điện thoại khách hàng" id="key_search" value="" class="input form-control">
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn btn-primary" onclick="show_product(1)"> <i
+                            <button type="button" class="btn btn btn-primary" onclick="show_customer(1)"> <i
                                     class="fa fa-search"></i>Tìm kiếm</button>
                         </span>
                     </div>
@@ -45,6 +45,13 @@
                                 <select onchange="show_customer(1)" id="customer_disable" style="height:40px;width: 150px;">
                                     <option value="N">Tài khoản thường</option>
                                     <option value="Y">Tài khoản bị khóa</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputState">Loại tài khoản</label><br />
+                                <select onchange="show_customer(1)" id="customer_virtual_filter" style="height:40px;width: 150px;">
+                                    <option value="N">Tài khoản thường</option>
+                                    <option value="Y">Tài khoản demo</option>
                                 </select>
                             </div>
                             @if($data_admin->id_type=="1" || $data_admin->id_type=="2")
@@ -175,6 +182,19 @@
                                     <label>Thời gian kết quả (phút)</label>
                                     <input type="number" id="time_result" class="form-control" value="3" min=1 />
                                     <br />
+            
+                                    <div class="col-12">
+                                        <div class="col-4"><label>Tức thời</label></div>
+                                        <div class="col-8">
+                                            <div class="onoffswitch">
+                                                <input type="checkbox" class="onoffswitch-checkbox" id="realtime">
+                                                <label class="onoffswitch-label" for="realtime">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <br />
                                     @if($data_admin->id_type=="1" || $data_admin->id_type=="2")
                                     <button type="button" id="btn_save_setting" class="btn btn-success w-100" />Cập nhật</form>
@@ -205,6 +225,12 @@
                 <div class="modal-body">
     
                     <form id="insert_customer_form">
+                        <br />
+                        <label>Loại tài khoản</label>
+                        <select name="customer_virtual" id="customer_virtual" class="form-control">
+                            <option value="N">Tài khoản thường</option>
+                            <option value="Y">Tài khoản demo</option>
+                        </select>
                         <br />
                         <label>Tên khách hàng (<font style="color: red">*</font>)</label>
                         <input type="text" id="customer_name" class="form-control" />
@@ -488,5 +514,5 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('backend/js/main/admin_customer.js') }}"></script>
+<script src="{{ asset('backend/js/main/admin_customer.js?v3') }}"></script>
 @endsection

@@ -7,7 +7,9 @@
 @endsection
 
 @section('content')
-
+<?php 
+    $data_admin = Session::get('data_admin'); 
+?>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-sm-12">
@@ -23,12 +25,14 @@
                         </span>
                     </div>
                     <div class="clients-list">
+                        @if($data_admin->id_type=="1" || $data_admin->id_type=="2")
                         <ul class="nav nav-tabs tab-border-top-danger">
                             <li class="active">
                                 <button type="button" onclick="clear_data()" id="modal_add"
                                     class="btn btn-warning">+</button>
                             </li>
                         </ul>
+                        @endif
                         <ul class="nav nav-tabs tab-border-top-danger mt-2">
                             <div class="form-group col-md-2">
                                 <label for="inputState">Trạng thái</label>
@@ -40,6 +44,7 @@
                                     <option value="close">Đóng</option>
                                 </select>
                             </div>
+                            @if($data_admin->id_type=="1" || $data_admin->id_type=="2")
                             <div class="form-group col-md-2">
                                 <label for="inputState">Nhân viên</label>
                                 <br />
@@ -48,6 +53,7 @@
 
                                 </select>
                             </div>
+                            @endif
                         </ul>
                         <div class="tab-content">
 
@@ -135,5 +141,5 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('backend/js/main/admin_introduce.js') }}"></script>
+<script src="{{ asset('backend/js/main/admin_introduce.js?v2') }}"></script>
 @endsection

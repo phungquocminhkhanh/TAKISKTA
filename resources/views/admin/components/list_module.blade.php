@@ -144,8 +144,34 @@
                             </li>
                             @endif
                             
+                                                      
                             @endforeach
+
+                            @if(isset($data_admin->admin_level) && $data_admin->admin_level == "2")
+                            <li class="nav-parent">
+                            
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">{{__('lang.report_statistics')}}</span></a>
+                            
+                                <ul class="children nav">
+                                    <li><a href="{{ URL::to('admin/manage-report-deposit-payment') }}">{{__('lang.report_statistics')}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endif
+
+
                             @elseif($data_admin->type_account=='sales')
+                                <li class="nav-parent">
+                                
+                                    <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
+                                            class="nav-label">Quản lý mã mời</span></a>
+                                
+                                    <ul class="children nav">
+                                        <li><a href="{{ URL::to('admin/manage-introduce') }}">Danh sách mã mời</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="nav-parent">
                                 
                                     <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span

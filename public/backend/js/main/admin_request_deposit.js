@@ -54,14 +54,16 @@ function show_deposit(page) {
                 type = (item.request_type == "1") ? "tài khoản" : "giới thiệu";
                 output += `
                 <tr>
-                    <td style="width:4%;">${page*10-9+k}</td>
+                    <td style="width:4%;">${page * 10 - 9 + k}</td>
                     <td>${item.customer_name}</td>
                     <td>${item.customer_phone}</td>
                     <td>${item.request_code}</td>
                     <td>${money(item.request_value)} VND</td>
                     <td>${item.request_created}</td>
-                    <td>${type}</td>
-                    <td><button class="btn btn-primary btn-sm" onClick="detail_deposit(${item.id_request})" ><i class="fa fa-info"></i> Chi tiết</button></td>
+                    <td>${(item.customer_virtual=="N")? "thường" : "demo"}</td>
+                    <td><button class="btn btn-primary btn-sm" onClick="detail_deposit(${
+                        item.id_request
+                    })" ><i class="fa fa-info"></i> Chi tiết</button></td>
                 </tr> `;
             });
 
@@ -161,25 +163,29 @@ function list_customer() {
     }
     $.ajax({
         url: urlapi,
-        type: 'POST',
-        data: { detect: 'list_customer_customer', limit: '20' }, //N la thường, Y là nhà cái
-        dataType: 'json',
-         headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        type: "POST",
+        data: {
+            detect: "list_customer_customer",
+            limit: "20",
+            customer_virtual: $("#customer_virtual").val(),
+        }, //N la thường, Y là nhà cái
+        dataType: "json",
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
-        success: function(response) {
+        success: function (response) {
             var output = ``;
-            response.data.forEach(function(item) {
+            response.data.forEach(function (item) {
                 output += `
                 <tr>
                     <td>${item.customer_name}</td>
                     <td>${item.customer_phone}</td>
                    
-                    <td><input type="radio" name="radio" value="${item.id_customer}" ></td>
+                    <td><input type="radio" name="radio" value="${item.id_customer}" data-customer_name="${item.customer_name}"></td>
                 </tr> `;
             });
-            $('#list_customer').html(output);
-        }
+            $("#list_customer").html(output);
+        },
     });
 
 }
@@ -207,7 +213,7 @@ function search_customer() {
                 <tr>
                     <td>${item.customer_name}</td>
                     <td>${item.customer_phone}</td>
-                    <td><input type="radio" name="radio" value="${item.id_customer}" ></td>
+                    <td><input type="radio" name="radio" value="${item.id_customer}" data-customer_name="${item.customer_name}"></td>
                 </tr> `;
                  });
             }
@@ -219,6 +225,7 @@ function search_customer() {
 
 function choose_customer() {
     var id_customer = $(':radio:checked').val();
+    var customer_name = $(":radio:checked").attr('data-customer_name');
     if ($("#khuyenmai").val() == 1) {
         type = "Ví tài khoản";
     } else if ($("#khuyenmai").val() == 2) {
@@ -229,16 +236,8 @@ function choose_customer() {
     if (typeof(id_customer) == "undefined") {
         alert('Bạn chưa chọng khách hàng');
     } else {
-        $.ajax({
-            url: urlapi,
-            type: 'POST',
-            data: { detect: 'list_customer_detail', id_customer: id_customer },
-            dataType: 'json',
-             headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(response) {
-                var output = `
+       
+        var output = `
                 <div class="inqbox-content">
                 <div id="contact-1" class="tab-pane active">
                     <center><h3><strong>Tạo lệnh xác nhận nạp tiền</strong></h3></center>
@@ -246,16 +245,16 @@ function choose_customer() {
                 <div class="tab-content" id="content-order" style="width: 100%;height: 557px;overflow: auto;">
                 <div>
                     <tr>
-                    <input type="text" hidden  value="${response.data[0].id_customer}">
+                    <input type="text" hidden  value="${id_customer}">
                         <td><p>Tên khách hàng: <a onClick="list_customer()" data-toggle="modal" data-target="#request_deposit"><img src="../images/chon.svg"></a></p></td>
-                        <td><p><input type="text" value="${response.data[0].customer_name}" placeholder="Tên khách hàng" class="form-control" readonly></p></td>
+                        <td><p><input type="text" value="${customer_name}" placeholder="Tên khách hàng" class="form-control" readonly></p></td>
                     </tr>
                     
                    
                    `;
 
-                if ($("#khuyenmai").val() == 1) {
-                    output += ` <tr>
+        if ($("#khuyenmai").val() == 1) {
+            output += ` <tr>
 
                     <td><p style="margin-top:14px">Số tiền nạp (VND):</p></td>
                     <td><input type="text" min="1" id="depoit_money" placeholder="000.000.000" class="form-control request" data-type="currency"></td>
@@ -276,10 +275,10 @@ function choose_customer() {
                 <td><font style="color: red">${type}</font>
                 </td>
                 </tr>
-                `
-                } else {
-                    if ($("#khuyenmai").val() == 2) {
-                        output += `<tr>
+                `;
+        } else {
+            if ($("#khuyenmai").val() == 2) {
+                output += `<tr>
                         <td><p>Số tiền nạp (VND):</p></td>
                             <td><input type="text" min="1" id="reward_money" placeholder="000.000.000" class="form-control request" data-type="currency"></td>
                              <small id="out_usd_request" style="color:red"></small>
@@ -287,9 +286,9 @@ function choose_customer() {
                         </tr>
                         <tr>
                         <td><font style="color: red">${type}</font></td>
-                    </tr>`
-                    } else {
-                        output += `
+                    </tr>`;
+            } else {
+                output += `
                         <tr>
                             <td><p style="margin-top:14px">Số tiền đầu tư (VND):</p></td>
                             <td><input type="text" min="1" id="reward_money" placeholder="000.000.000" class="form-control request" data-type="currency">
@@ -301,11 +300,10 @@ function choose_customer() {
                         <tr>
                             <td><p style="color: red;margin-top:14px">${type}</p>
                             </td>
-                        </tr>`
-
-                    }
-                }
-                output += `
+                        </tr>`;
+            }
+        }
+        output += `
                
                 </div>
                 <hr>
@@ -314,21 +312,19 @@ function choose_customer() {
                 </div>
                     `;
 
-                $('#detail_deposit').fadeOut().html(output);
-                $('#detail_deposit').fadeIn().html(output);
-                $("#close_modal").click();
-                $("input[data-type='currency']").on({
-                    keyup: function() {
-                        formatCurrency($(this));
-                    },
-                    blur: function() {
-                        formatCurrency($(this), "blur");
-                    }
-                });
+        $("#detail_deposit").fadeOut().html(output);
+        $("#detail_deposit").fadeIn().html(output);
+        $("#close_modal").click();
+        $("input[data-type='currency']").on({
+            keyup: function () {
+                formatCurrency($(this));
+            },
+            blur: function () {
+                formatCurrency($(this), "blur");
+            },
+        });
 
                
-            }
-        });
 
     }
 }
@@ -379,6 +375,7 @@ function create_request_comfirm(id_customer) {
         },
         success: function(response) {
                     if (response.success == "true") {
+                        console.log(id_customer);
                         io_socket.emit('reload_data_customer',{id_customer:id_customer+""});
                         show_deposit(1);
                         alert('Nạp tiền thành công');

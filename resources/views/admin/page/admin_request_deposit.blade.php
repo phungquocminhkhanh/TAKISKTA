@@ -123,6 +123,7 @@
                         <center>
                             <select style="font-weight: bold" onchange="list_customer()" id="customer_virtual">
                                 <option value="N">Tài khoản thường</option>
+                                <option value="Y">Tài khoản demo</option>
                             </select><br /><br />
                             <select style="font-weight: bold" id="khuyenmai">
 
@@ -174,5 +175,5 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('backend/js/main/admin_request_deposit.js') }}"></script>
+<script src="{{ asset('backend/js/main/admin_request_deposit.js?v2') }}"></script>
 @endsection

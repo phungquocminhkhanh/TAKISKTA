@@ -274,6 +274,7 @@ function show_customer(page) {
             limit: 10,
             page: page,
             type_admin: "admin",
+            customer_virtual: $("#customer_virtual_filter").val(),
         };
     } else {
         data = {
@@ -284,6 +285,7 @@ function show_customer(page) {
             limit: 10,
             page: page,
             type_admin: "admin",
+            customer_virtual: $("#customer_virtual_filter").val(),
         };
     }
    
@@ -359,6 +361,7 @@ function show_customer(page) {
                                       <span class="caret"></span></button>
                                       <ul style="color:blue;" class="dropdown-menu">
                                         <li><a onclick="edit_customer('${v.id_customer}')" data-toggle="modal" data-target="#detail_customer_modal">Chi tiết</a></li>
+                                        <li><a onclick="show_div_detail('${v.id_customer}','${v.customer_name}','${v.customer_phone}')">Cài đặt mua</a></li>
                                       </ul>
                                     </div>`;
                     }
@@ -455,7 +458,6 @@ $(document).ready(function () {
         var formData = new FormData();
         formData.append("detect", "customer_manager");
         formData.append("type_manager", "create");
-        formData.append("customer_virtual", "N");
         formData.append("customer_name", $("#customer_name").val());
         formData.append("customer_phone", $("#customer_phone").val());
         formData.append("customer_introduce", $("#customer_introduce").val());
@@ -465,6 +467,7 @@ $(document).ready(function () {
         formData.append("customer_account_holder",$("#customer_account_holder").val());
         formData.append("customer_password_payment",$("#customer_password_payment").val());
         formData.append("company_name", $("#company_name").val());
+        formData.append("customer_virtual", $("#customer_virtual").val());
         $.ajax({
             url: urlapi,
             method: "post",
@@ -643,7 +646,7 @@ $(document).ready(function () {
         let timeout = $("#timeout").val();
         let discount = $("#discount").val();
         let time_result = $("#time_result").val();
-            
+        let realtime = $("#realtime").is(":checked") ? "Y" : "N";
         $.ajax({
             url: urlapi,
             method: "post",
@@ -657,6 +660,7 @@ $(document).ready(function () {
                 timeout: timeout,
                 discount: discount,
                 time_result: time_result,
+                realtime: realtime,
             },
             dataType: "JSON",
             headers: {
