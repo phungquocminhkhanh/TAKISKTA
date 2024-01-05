@@ -1,4 +1,5 @@
 var _id_customer = "";
+var _customer_name = "";
 function clear_data()
 {
     $("#insert_customer_form input").val('');
@@ -44,8 +45,8 @@ function check_pass_dashboard22() {
     if (flag == 0) return true;
     return false;
 }
-function quen_mk(phone) {
-    $("#customer_phone_quenmk").val(phone);
+function quen_mk(customer_name) {
+    _customer_name = customer_name;
     $("#detail_customer_modal").modal("hide");
 }
 function delete_customer(id) {
@@ -347,7 +348,7 @@ function show_customer(page) {
                                         <li><a onclick="edit_customer('${v.id_customer}')" data-toggle="modal" data-target="#detail_customer_modal">Sửa</a></li>
                                         ${btn_xem_vi}
                                         <li><a onclick="disable_customer('${v.id_customer}','${v.customer_disable}')">${text_disable}</a></li>
-                                        <li><a onclick="quen_mk('${v.customer_phone}')" data-toggle="modal" data-target="#change_password_customer_Modal">Cập nhật mật khẩu</a></li>
+                                        <li><a onclick="quen_mk('${v.customer_name}')" data-toggle="modal" data-target="#change_password_customer_Modal">Cập nhật mật khẩu</a></li>
                                         <li><a onclick="show_ip('${v.id_customer}')">Xem IP</a></li>
                                         <li><a onclick="show_div_detail('${v.id_customer}','${v.customer_name}','${v.customer_phone}')">Cài đặt mua</a></li>
                                       </ul>
@@ -603,7 +604,7 @@ $(document).ready(function () {
                 method: "post",
                 data: {
                     detect: "forgot_password",
-                    customer_phone: $("#customer_phone_quenmk").val(),
+                    customer_name: _customer_name,
                     new_pass: $("#dashpassword_change_customer").val(),
                 },
                 headers: {
