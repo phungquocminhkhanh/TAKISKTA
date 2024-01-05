@@ -3,11 +3,11 @@ function return_status_payment(status) {
     if (status == 1) {
         html = "<span>Tạo lệnh</span>";
     } else if (status == 2) {
-        html = '<span style="color:#FFCB5A;">Chờ xử lý</span>';
+        html = '<span style="color:#FFCB5A;">' + lang_wait + '</span>';
     } else if (status == 3) {
-        html = '<span style="color:#00CC00;"> Hoàn tất </span>';
+        html = '<span style="color:#00CC00;">' + lang_hoantat + "</span>";
     } else {
-        html = '<span style="color:red;">Hủy lệnh</span>';
+        html = '<span style="color:red;">' + lang_cancel + "</span>";
     }
     return html;
 }
@@ -26,21 +26,21 @@ function text_ketqua(text) {
 
 function text_status_open_close(status) {
     if (status == "close") {
-        return '<span style="color:red;">Đóng</span>';
+        return '<span style="color:red;">' + lang_open + "</span>";
     } else if (status == "open") {
-        return "Mở";
+        return lang_close;
     }
     return "";
 }
 
 function text_status_order(status) {
     if (status == "wait") {
-        return '<span style="color:#FFCB5A;">Chờ xử lý</span>';
+        return '<span style="color:#FFCB5A;">'+lang_wait+'</span>';
     } else if (status == "finish") {
-        return '<span style="color:#00CC00;">Hoàn tất</span>';
+        return '<span style="color:#00CC00;">' + lang_hoantat + "</span>";
     }
     else if (status == "cancel") {
-        return '<span style="color:red;">Hủy</span>';
+        return '<span style="color:red;">' + lang_cancel + "</span>";
     }
     return "";
 }

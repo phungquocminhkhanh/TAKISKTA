@@ -14,8 +14,8 @@
             <div class="inqbox">
                 <div class="inqbox-content">
                     <span class="text-muted small pull-right"><i class="fa fa-clock-o"></i></span>
-                    <h2>Đơn hàng</h2>
-                    
+                    <h2>{{__('lang.d_order')}}</h2>
+
                     <div class="clients-list">
 
                         <div class="tab-content">
@@ -30,9 +30,9 @@
 
                                             <tr>
                                                 <td></td>
-                                                <td>Nội dung</td>
-                                                <td>Ngày cập nhật</td>
-                                                <td></td>    
+                                                <td>{{__('lang.d_content')}}</td>
+                                                <td>{{__('lang.d_update_time')}}</td>
+                                                <td></td>
                                             </tr>
                                             <tbody id="content_popup">
 
@@ -66,18 +66,19 @@
                     </center>
                 </div>
                 <div class="modal-body">
-    
+
                     <form id="insert_form">
                         <label>Nội dung</label>
                         <textarea id="content" rows="20"></textarea>
                         <br />
                         <br />
                         <button type="button" name="edit" id="btn_insert" class="btn btn-success">Cập nhật</button>
-                    
+
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="close_modol_insert" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" id="close_modol_insert" class="btn btn-default"
+                        data-dismiss="modal">Đóng</button>
                 </div>
             </div>
         </div>
@@ -90,7 +91,5 @@
 <script src="{{ asset('backend/js/main/admin_popup.js') }}"></script>
 <script>
     CKEDITOR.replace( 'content');
-
-        
 </script>
 @endsection

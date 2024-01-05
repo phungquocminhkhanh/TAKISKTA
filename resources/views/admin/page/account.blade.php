@@ -14,13 +14,13 @@
          <div class="inqbox">
             <div class="inqbox-content">
                <span class="text-muted small pull-right"><i class="fa fa-clock-o"></i></span>
-               <h2>Nhân viên</h2>
+               <h2>{{__('lang.sale')}}</h2>
                <div class="input-group">
-                  <input type="text" placeholder="Nhập tên, số điện thoại, email, mã giới thiệu" id="key_seach" value=""
+                  <input type="text" placeholder="{{__('lang.d_enter_filed_register')}}" id="key_seach" value=""
                      class="input form-control">
                   <span class="input-group-btn">
                      <button type="button" class="btn btn btn-primary" onclick="show_account(1)"> <i
-                           class="fa fa-search"></i>Tìm kiếm</button>
+                           class="fa fa-search"></i>{{__('lang.search')}}</button>
                   </span>
                </div>
                <div class="clients-list">
@@ -31,12 +31,11 @@
                   </ul>
                   <ul class="nav nav-tabs tab-border-top-danger">
                      <div class="form-group col-md-3">
-                        <label for="inputState">Loại nhân viên</label>
+                        <label for="inputState">{{__('lang.d_type_employee')}}</label>
                         <select onchange="show_account(1)" id="id_type_seach" style="height:40px;width: 150px;">
-                           <option value="">Tất cả</option>
-                           <option value="1">Admin</option>
-                           <option value="2">Chăm sóc khách hàng</option>
-                           <option value="3">Kinh doanh</option>
+                           <option value="">{{__('lang.d_all')}}</option>
+                           <option value="1">{{__('lang.d_admin')}}</option>
+                           <option value="3">{{__('lang.d_business')}}</option>
                         </select>
                      </div>
                   </ul>
@@ -53,10 +52,10 @@
                                  <tr onclick="show_detail_account(${v.id})">
                                     <td></td>
                                     <td>Tên</td>
-                                    <td>Loại nhân viên</td>
-                                    <td>Số điện thoại</td>
-                                    <td>Mã giới thiệu</td>
-                                    <td>Trạng thái</td>
+                                    <td>{{__('lang.d_type_employee')}}</td>
+                                    <td>{{__('lang.phone')}}</td>
+                                    <td>{{__('lang.d_referral_code')}}</td>
+                                    <td>{{__('lang.d_status')}}</td>
                                     <td></td>
                                     <td></td>
                                  </tr>
@@ -70,8 +69,9 @@
                         <div class="form-inline pull-right">
                            <div class="form-group">
                               << <a id="page_back" onclick="next_page('back')" style="color: #303030;"><span
-                                    id="txt_page_before">Trang sau</span></a>&nbsp;&nbsp;&nbsp; <a id="page_next"
-                                    onclick="next_page('next')"><span id="txt_page_after">Trang trước</span></a>>>
+                                    id="txt_page_before">back</span></a>&nbsp;&nbsp;&nbsp; <a
+                                    id="page_next" onclick="next_page('next')"><span
+                                       id="txt_page_after">next</span></a>>>
 
                            </div>
                         </div>
@@ -102,7 +102,7 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Thêm Nhân Viên</h4>
+               <h4 class="modal-title">{{__('lang.d_add_employee')}}</h4>
             </div>
             <div class="modal-body">
                <meta name="csrf-token-insert" content="{{ csrf_token() }}" />
@@ -128,7 +128,7 @@
                   <small id="erpassword" class="text-danger"></small>
                   <br />
                   <br />
-                  <label>Họ và tên đầy đủ (<font style="color: red">*</font>)</label>
+                  <label>{{__('lang.d_fullname')}} (<font style="color: red">*</font>)</label>
                   <input type="text" name="full_name" id="fullname" class="form-control" />
                   <small id="erfullname" class="text-danger"></small>
                   <br />
@@ -138,17 +138,17 @@
                   <small id="eremail" class="text-danger"></small>
                   <br />
                   <br />
-                  <label>Số điện thoại</label>
+                  <label>{{__('lang.phone')}}</label>
                   <input type="tel" id="phone" name="phone_number"
                      onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                      onkeyup="KT_sodienthoai(this.value)" maxlength="10" class="form-control">
                   <small id="ersdt" class="text-danger"></small>
                   <br />
-                  <label>Loại nhân viên (<font style="color: red">*</font>)</label>
+                  <label>{{__('lang.d_type_employee')}} (<font style="color: red">*</font>)</label>
                   <select id="id_type" name="id_type" onchange="ma_gioi_thieu()">
-                     <option value="1">Quản lý</option>
-                     {{-- <option value="2">Chăm sóc khách hàng</option> --}}
-                     <option value="3">Kinh doanh</option>
+                     <option value="1">{{__('lang.d_manager')}}</option>
+                     {{-- <option value="2">{{__('lang.d_customer_service')}}</option> --}}
+                     <option value="3">{{__('lang.d_business')}}</option>
                   </select>
                   <br />
                   <br />
@@ -157,7 +157,8 @@
                </form>
             </div>
             <div class="modal-footer">
-               <button type="button" id="close_modol_insert" class="btn btn-default" data-dismiss="modal">Đóng</button>
+               <button type="button" id="close_modol_insert" class="btn btn-default"
+                  data-dismiss="modal">{{__('lang.close')}}</button>
             </div>
          </div>
       </div>
@@ -169,7 +170,7 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Nhân Viên</h4>
+               <h4 class="modal-title">{{__('lang.sale')}}</h4>
             </div>
             <div class="modal-body">
                <meta name="csrf-token-edit" content="{{ csrf_token() }}" />
@@ -192,7 +193,7 @@
                   <label>Email</label>
                   <input type="text" name="email" id="eemail" class="form-control" />
                   <br />
-                  <label>Số điện thoại</label>
+                  <label>{{__('lang.phone')}}</label>
                   <input type="tel" id="ephone" name="phone_number"
                      onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                      onkeyup="KT_esodienthoai(this.value)" maxlength="10" class="form-control">
@@ -200,11 +201,11 @@
 
                   <br />
                   <div id="einput_mas_gioi_thieu"></div>
-                  <label>Loại nhân viên (<font style="color: red">*</font>)</label>
+                  <label>{{__('lang.d_type_employee')}} (<font style="color: red">*</font>)</label>
                   <select id="etype_account" name="id_type">
-                     <option value="1">Quản lý</option>
-                     {{-- <option value="2">Chăm sóc khách hàng</option> --}}
-                     <option value="3">Kinh doanh</option>
+                     <option value="1">{{__('lang.d_manager')}}</option>
+                     {{-- <option value="2">{{__('lang.d_customer_service')}}</option> --}}
+                     <option value="3">{{__('lang.d_business')}}</option>
                   </select>
                   <br />
                   <br />
@@ -214,7 +215,8 @@
                </form>
             </div>
             <div class="modal-footer">
-               <button type="button" id="close_modol_edit" class="btn btn-default" data-dismiss="modal">Đóng</button>
+               <button type="button" id="close_modol_edit" class="btn btn-default"
+                  data-dismiss="modal">{{__('lang.close')}}</button>
             </div>
          </div>
       </div>
@@ -226,7 +228,7 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Phân quyền quản lý</h4>
+               <h4 class="modal-title">{{__('lang.d_decentralization_of_management')}}</h4>
             </div>
             <div class="modal-body">
 
@@ -247,12 +249,15 @@
 
                   <input id="id_author_account" value="" type="hidden">
                   <br />
-                  <input type="submit" name="edit" id="btn_author_account" value="Cập nhật" class="btn btn-success" />
-                  {{-- <button type="button" id="btn-author_account" class="btn btn-success">Phân quyền</button> --}}
+                  <input type="submit" name="edit" id="btn_author_account" value="{{__('lang.d_update')}}"
+                     class="btn btn-success" />
+                  {{-- <button type="button" id="btn-author_account"
+                     class="btn btn-success">{{__('lang.d_decentralization')}}</button> --}}
                </form>
             </div>
             <div class="modal-footer">
-               <button type="button" id="close_modol_author" class="btn btn-default" data-dismiss="modal">Đóng</button>
+               <button type="button" id="close_modol_author" class="btn btn-default"
+                  data-dismiss="modal">{{__('lang.close')}}</button>
             </div>
          </div>
       </div>
@@ -263,7 +268,7 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Phân quyền sàn</h4>
+               <h4 class="modal-title">{{__('lang.d_decentralization_exchange')}}</h4>
             </div>
             <div class="modal-body">
 
@@ -285,12 +290,13 @@
 
                   <br />
 
-                  <button type="button" id="btn_author_exchange" class="btn btn-success">Phân quyền</button>
+                  <button type="button" id="btn_author_exchange"
+                     class="btn btn-success">{{__('lang.d_decentralization')}}</button>
                </form>
             </div>
             <div class="modal-footer">
                <button type="button" id="close_modol_exchange" class="btn btn-default"
-                  data-dismiss="modal">Đóng</button>
+                  data-dismiss="modal">{{__('lang.close')}}</button>
             </div>
          </div>
       </div>
@@ -302,7 +308,7 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Đổi lại mật khẩu</h4>
+               <h4 class="modal-title">{{__('lang.d_change_pw')}}</h4>
             </div>
             <div class="modal-body">
 
@@ -311,7 +317,7 @@
                   <input type="hidden" id="id_change_password_account" value="">
                   <div class="inqbox-content">
 
-                     <label>Mật khẩu mới</label>
+                     <label>{{__('lang.d_new_pw')}}</label>
                      <div class="input-group" id="show_hide_password4">
                         <input class="form-control" type="password" name="account_password" id="epassword_change"
                            onkeyup="passwordChanged2()">
@@ -323,7 +329,7 @@
                      <small id="cerpassword" class="text-danger"></small>
                      <br />
                      <br />
-                     <label>Nhập lại mật khẩu</label>
+                     <label>{{__('lang.d_confirm_pw')}}</label>
                      <div class="input-group" id="show_hide_password5">
                         <input class="form-control" type="password" name="account_password" id="epassword_change2">
 
@@ -334,13 +340,13 @@
                      <small id="cerpassword2" class="text-danger"></small>
                      <br />
                      <br />
-                     <input type="submit" name="edit" id="btn_change_password_account" value="Cập nhật"
+                     <input type="submit" name="edit" id="btn_change_password_account" value="{{__('lang.d_update')}}"
                         class="btn btn-success" />
                </form>
             </div>
             <div class="modal-footer">
                <button type="button" id="close_modol_changge_password" class="btn btn-default"
-                  data-dismiss="modal">Đóng</button>
+                  data-dismiss="modal">{{__('lang.close')}}</button>
             </div>
          </div>
       </div>

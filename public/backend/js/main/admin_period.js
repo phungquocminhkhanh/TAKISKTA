@@ -9,7 +9,8 @@ function show_period(page) {
         status: $("#status_filter").val(),
         filter: $("#key_search").val(),
         id_exchange: $("#id_exchange_filter").val(),
-        date_begin : $("#date_begin").val()
+        date_begin: $("#date_begin").val(),
+        date_end: $("#date_begin").val()
     };
 
     $.ajax({
@@ -34,7 +35,7 @@ function show_period(page) {
                                 <td>${text_status_open_close(v.status)}</td>
                                 <td>
                                     <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${lang_setting}
                                     <span class="caret"></span></button>
                                     <ul style="color:blue;" class="dropdown-menu">
                                         <li><a class="modal_edit" 
@@ -51,7 +52,7 @@ function show_period(page) {
                                                 data-discount="${v.discount}"
                                                 data-status="${v.status}"
                                             >
-                                        Sửa</a></li>
+                                        ${lang_edit}</a></li>
                                     </ul>
                                     </div>
                                 </td>
@@ -69,7 +70,7 @@ $(document).ready(function () {
 
     $("#modal_add").on("click", function () {
         _type_manager = "create";
-        $("#create_modal .btn_insert").html("Thêm");
+        $("#create_modal .btn_insert").html(lang_create);
         $("#create_modal").modal("show");
     });
     $("#btn_insert_period").on("click", function () {
@@ -124,7 +125,7 @@ $(document).ready(function () {
     });
     $("#table_period").on("click", ".modal_edit", function () {
         _type_manager = "update";
-        $("#create_modal .btn_insert").html("Cập nhật");
+        $("#create_modal .btn_insert").html(lang_update);
         _id_period = $(this).data('id');
         let id_exchange = $(this).data("id_exchange");
         let period_open = $(this).data("period_open");

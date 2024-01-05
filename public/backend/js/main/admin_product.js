@@ -60,7 +60,7 @@ function show_product(page) {
                                 <td>${v.created}</td>
                                 <td>
                                     <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${lang_setting}
                                         <span class="caret"></span></button>
                                         <ul style="color:blue;" class="dropdown-menu">
                                             <li><a class="modal_edit" 
@@ -84,7 +84,7 @@ function show_product(page) {
                                                     data-status="${v.status}"
 
                                                 >
-                                            Sửa</a></li>
+                                            ${lang_edit}</a></li>
                                         </ul>
                                     </div>
                                 </td>
@@ -167,10 +167,6 @@ $(document).ready(function () {
     $("#btn_insert_product").on("click", function () {
         var formData = new FormData();
 
-        if ($("#product_name").val() == "") {
-            alert("Nhập tên sản phẩm");
-            return;
-        }
         formData.append("detect", "product_manager");
         if (_type_manager == "add") {
             formData.append("type_manager", "create");

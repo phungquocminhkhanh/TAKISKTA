@@ -22,13 +22,13 @@ function show_popup(page) {
                                 <td>${v.updated}</td>
                                 <td>
                                     <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${lang_setting}
                                     <span class="caret"></span></button>
                                     <ul style="color:blue;" class="dropdown-menu">
                                         <li><a class="modal_edit" 
                                                 data-id="${v.id}"
                                             >
-                                            Sửa
+                                            ${lang_edit}
                                             </a>
                                         </li>
                                     </ul>
@@ -85,7 +85,7 @@ $(document).ready(function () {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
-                alert("Cập nhật thành công");
+                alert(response.message);
                 show_popup(1);
                 $("#create_modal").modal("hide");
             },

@@ -14,13 +14,12 @@
             <div class="inqbox">
                 <div class="inqbox-content">
                     <span class="text-muted small pull-right"><i class="fa fa-clock-o"></i></span>
-                    <h2>Thời gian</h2>
+                    <h2>{{__('lang.d_time')}}</h2>
                     <div class="input-group">
-                        <input type="text" placeholder=""
-                            id="key_search" value="" class="input form-control">
+                        <input type="text" placeholder="" id="key_search" value="" class="input form-control">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn btn-primary" onclick="show_period(1)"> <i
-                                    class="fa fa-search"></i>Tìm kiếm</button>
+                                    class="fa fa-search"></i>{{__('lang.search')}}</button>
                         </span>
                     </div>
                     <div class="clients-list">
@@ -31,32 +30,33 @@
                         </ul>
                         <ul class="nav nav-tabs tab-border-top-danger mt-2">
                             <div class="form-group col-md-2">
-                                <label for="inputState">Khu vực</label>
+                                <label for="inputState">{{__('lang.d_area')}}</label>
                                 <br />
-                                <select onchange="show_period(1)" id="id_exchange_filter" style="height:40px;width: 150px;">
-                                    <option value="">Tất cả</option>
-                                    <option value="45">Sang trọng</option>
-                                    <option value="46">Đồ điện tử</option>
-                                    <option value="47">Đồ gia dụng</option>
-                                    <option value="48">Mỹ phẩm chính hảng</option>
+                                <select onchange="show_period(1)" id="id_exchange_filter"
+                                    style="height:40px;width: 150px;">
+                                    <option value="">{{__('lang.d_all')}}</option>
+                                    <option value="45">{{__('lang.d_luxury')}}</option>
+                                    <option value="46">{{__('lang.d_electronic')}}</option>
+                                    <option value="47">{{__('lang.d_houseware')}}</option>
+                                    <option value="48">{{__('lang.d_cosmetics')}}</option>
                                 </select>
-                            
+
                             </div>
 
                             <div class="form-group col-md-2">
-                                <label for="inputState">Ngày</label>
+                                <label for="inputState">{{__('lang.d_date')}}</label>
                                 <br />
                                 <input type="date" id="date_begin" onchange="show_period(1)">
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="inputState">Trạng thái</label>
+                                <label for="inputState">{{__('lang.d_status')}}</label>
                                 <br />
                                 <select onchange="show_period(1)" id="status_filter" style="height:40px;width: 150px;">
-                                    <option value="">Tất cả</option>
-                                    <option value="open">Mở</option>
-                                    <option value="close">Đóng</option>
+                                    <option value="">{{__('lang.d_all')}}</option>
+                                    <option value="open">{{__('lang.d_open')}}</option>
+                                    <option value="close">{{__('lang.close')}}</option>
                                 </select>
-                            
+
                             </div>
                         </ul>
                         <div class="tab-content">
@@ -71,12 +71,12 @@
 
                                             <tr>
                                                 <td></td>
-                                                <td>Khuc vực</td>
-                                                <td>Thời gian bắt đầu</td>
-                                                <td>Thời gian kết thức</td>
-                                                <td>Giảm giá</td>
-                                                <td>Trạng thái</td>
-                                                <td>Ngày tạo</td>
+                                                <td>{{__('lang.d_area')}}</td>
+                                                <td>{{__('lang.d_begin_time')}}</td>
+                                                <td>{{__('lang.d_end_time')}}</td>
+                                                <td>{{__('lang.d_discount')}}</td>
+                                                <td>{{__('lang.d_status')}}</td>
+                                                <td>{{__('lang.d_create_date')}}</td>
                                                 <td></td>
                                             </tr>
                                             <tbody id="content_period">
@@ -86,7 +86,7 @@
 
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -112,79 +112,82 @@
                 <div class="modal-body">
 
                     <form id="insert_form">
-                        <label>Khu vực</label>
+                        <label>{{__('lang.exchange')}}</label>
                         <select id="id_exchange" class="form-control">
-                            <option value="">chọn</option>
+                            <option value="">{{__('lang.select')}}</option>
                             <option value="45">Sang trọng</option>
                             <option value="46">Đồ điện tử</option>
                             <option value="47">Đồ gia dụng</option>
                             <option value="48">Mỹ phẩm chính hảng</option>
                         </select>
                         <br />
-                        
+
                         <?php $now = date("Y-m-d"); ?>
                         <div class="row">
-                            
+
                             <div class="col-12 col-sm-6">
-                                <label>Thời gian bắt đầu</label>
+                                <label>{{__('lang.d_begin_time')}}</label>
                                 <input type="date" id="d_start" class="form-control" value="{{$now}}">
                             </div>
                             <div class="col-6 col-sm-3">
-                                <label>Giờ</label>
+                                <label>{{__('lang.hour')}}</label>
                                 <select id="h_start" class="form-control">
-                                    @for($i = 0 ; $i <= 23 ; $i++)
-
-                                        <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i : $i}}</option>
-                                    @endfor
-                                </select> 
+                                    @for($i = 0 ; $i <= 23 ; $i++) <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i
+                                            : $i}}</option>
+                                            @endfor
+                                </select>
                             </div>
                             <div class="col-6 col-sm-3">
-                                <label>Phút</label>
+                                <label>{{__('lang.phut')}}</label>
                                 <select id="m_start" class="form-control">
-                                    @for($i = 0 ; $i <= 59 ; $i++) 
-                                    <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i : $i}}</option>
-                                    @endfor
+                                    @for($i = 0 ; $i <= 59 ; $i++) <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i
+                                            : $i}}</option>
+                                            @endfor
                                 </select>
                             </div>
                         </div>
                         <br />
                         <div class="row">
                             <div class="col-12 col-sm-6">
-                                <label>Thời gian kết thúc</label>
+                                <label>{{__('lang.d_end_time')}}</label>
                                 <input type="date" id="d_end" class="form-control" value="{{$now}}">
                             </div>
                             <div class="col-6 col-sm-3">
-                                <label>Giờ</label>
+                                <label>{{__('lang.hour')}}</label>
                                 <select id="h_end" class="form-control">
-                                    @for($i = 0 ; $i <= 23 ; $i++) <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i : $i}}</option>
-                                        @endfor
+                                    @for($i = 0 ; $i <= 23 ; $i++) <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i
+                                            : $i}}</option>
+                                            @endfor
                                 </select>
                             </div>
                             <div class="col-6 col-sm-3">
-                                <label>Phút</label>
+                                <label>{{__('lang.phut')}}</label>
                                 <select id="m_end" class="form-control">
-                                    @for($i = 0 ; $i <= 59 ; $i++) <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i : $i}}</option>
-                                        @endfor
+                                    @for($i = 0 ; $i <= 59 ; $i++) <option value="{{($i<10)? $i : $i}}">{{($i<10)?'0'.$i
+                                            : $i}}</option>
+                                            @endfor
                                 </select>
                             </div>
                         </div>
                         <br />
-                        <label>Giảm giá (%)</label>
+                        <label>{{__('lang.giam_gia')}} (%)</label>
                         <input type="number" id="discount" class="form-control" min=1 max=100>
                         <br />
-                        <label>Trạng thái</label>
+                        <label>{{__('lang.status')}}</label>
                         <select id="status" class="form-control">
-                            <option value="open">Mở</option>
-                            <option value="close">Đóng</option>
+                            <option value="open">{{__('lang.open')}}</option>
+                            <option value="close">{{__('lang.close')}}</option>
                         </select>
                         <br />
                         <br />
-                        <button type="button" name="insert" id="btn_insert_period" class="btn btn-success btn_insert">Thêm</button>
+                        <button type="button" name="insert" id="btn_insert_period"
+                            class="btn btn-success btn_insert">Thêm</button>
 
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="close_modol_insert" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="button" id="close_modol_insert" class="btn btn-default"
+                        data-dismiss="modal">{{__('lang.close')}}</button>
                 </div>
             </div>
         </div>

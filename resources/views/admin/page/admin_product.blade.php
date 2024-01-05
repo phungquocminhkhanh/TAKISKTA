@@ -16,10 +16,10 @@
                     <span class="text-muted small pull-right"><i class="fa fa-clock-o"></i></span>
                     <h2>Sản phẩm</h2>
                     <div class="input-group">
-                        <input type="text" placeholder="Nhập tên sản phẩm" id="key_search" value="" class="input form-control">
+                        <input type="text" placeholder="{{__('lang.enter_product_name')}}" id="key_search" value="" class="input form-control">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn btn-primary" onclick="show_product(1)"> <i
-                                    class="fa fa-search"></i>Tìm kiếm</button>
+                                    class="fa fa-search"></i>{{__('lang.search')}}</button>
                         </span>
                     </div>
                     <div class="clients-list">
@@ -31,20 +31,20 @@
                         </ul>
                         <ul class="nav nav-tabs tab-border-top-danger mt-2">
                             <div class="form-group col-md-2">
-                                <label for="inputState">Trạng thái</label>
+                                <label for="inputState">{{__('lang.status')}}</label>
                                 <br />
                                 <select onchange="show_product(1)" id="status_filter"
                                     style="height:40px;width: 150px;">
-                                    <option value="">Tất cả</option>
-                                    <option value="open">Mở</option>
-                                    <option value="close">Đóng</option>
+                                    <option value="">{{__('lang.all')}}</option>
+                                    <option value="open">{{__('lang.open')}}</option>
+                                    <option value="close">{{__('lang.close')}}</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="inputState">Danh mục</label>
+                                <label for="inputState">{{__('lang.exchange')}}</label>
                                 <br />
                                 <select onchange="show_product(1)" id="id_exchange_filter" style="height:40px;width: 150px;">
-                                    <option value="">Tất cả</option>
+                                    <option value="">{{__('lang.all')}}</option>
                                     <option value="45">Sang trọng</option>
                                     <option value="46">Đồ điện tử</option>
                                     <option value="47">Đồ gia dụng</option>  
@@ -67,14 +67,14 @@
                                                 <td>
                                                    
                                                 </td>
-                                                <td>Tên sản phẩm</td>
-                                                <td>Giá</td>
-                                                <td>Số lượng</td>
-                                                <td>Đã mua</td>
-                                                <td>Giảm giá</td>
-                                                <td>Danh mục</td>
-                                                <td>Trạng thái</td>
-                                                <td>Ngày tạo</td>
+                                                <td>{{__('lang.product_name')}}</td>
+                                                <td>{{__('lang.gia')}}</td>
+                                                <td>{{__('lang.so_luong')}}</td>
+                                                <td>{{__('lang.da_mua')}}</td>
+                                                <td>{{__('lang.giam_gia')}}</td>
+                                                <td>{{__('lang.exchange')}}</td>
+                                                <td>{{__('lang.status')}}</td>
+                                                <td>{{__('lang.date_create')}}</td>
                                                 <td></td>
                                             </tr>
                                             <tbody id="content_product">
@@ -87,9 +87,9 @@
                                 <div class="form-inline pull-right">
                                     <div class="form-group">
                                         << <a id="page_back" onclick="next_page('back')" style="color: #303030;"><span
-                                                id="txt_page_before">Trang sau</span></a>&nbsp;&nbsp;&nbsp; <a
+                                                id="txt_page_before">Back</span></a>&nbsp;&nbsp;&nbsp; <a
                                                 id="page_next" onclick="next_page('next')"><span
-                                                    id="txt_page_after">Trang trước</span></a>>>
+                                                    id="txt_page_after">Next</span></a>>>
 
                                     </div>
                                 </div>
@@ -109,29 +109,29 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Thêm sản phẩm</h4>
+                    <h4 class="modal-title">{{__('lang.them_san_pham')}}</h4>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="insert_form">
                         <label>Khu vực</label>
                         <select id="id_exchange" class="form-control">
-                            <option value="">Tất cả</option>
+                            <option value="">{{__('lang.all')}}</option>
                             <option value="45">Sang trọng</option>
                             <option value="46">Đồ điện tử</option>
                             <option value="47">Đồ gia dụng</option>
                             <option value="48">Mỹ phẩm chính hảng</option>
                         </select>
                         <br />
-                        <label>Tên sản phẩm</label>
+                        <label>{{__('lang.product_name')}}</label>
                         <input type="text" id="product_name" class="form-control" />
                         <br />
-                        <label>Giá</label>
+                        <label>{{__('lang.gia')}}</label>
                         <input type="text" id="price" class="form-control" data-type="currency"/>
                         <br />
-                        <label>Số lượng</label>
+                        <label>{{__('lang.so_luong')}}</label>
                         <input type="number" id="quantity" class="form-control" min="1" value="10" />
                         <br />
-                        <label>Giảm giá</label>
+                        <label>{{__('lang.giam_gia')}}</label>
                         <div class="row">
                             <div class="col-8">
                                 <input type="number" id="discount" class="form-control" min="0"/>
@@ -150,24 +150,24 @@
                         <label>Hot</label>
                         <input type="number" id="hot" class="form-control" min="1" value="1" />
                         <br />
-                        <label>Trạng thái</label>
+                        <label>{{__('lang.status')}}</label>
                         <select id="status_add" class="form-control">
                             <option value="open">Mở</option>
                             <option value="close">Đóng</option>
                         </select>
                         <br />
-                        <label>Hỉnh ảnh</label>
+                        <label>{{__('lang.hinh_anh')}}</label>
                         <input type="file" id="img_product" class="form-control" min="1" value="1" onchange="select_img('img_product','content_img','100%')"/>
                         <div id="content_img" class="mt-2 text-center">
                         </div>
                         <br />
                         <button type="button" name="insert" id="btn_insert_product"
-                            class="btn btn-success">Lưu</button>
+                            class="btn btn-success">{{__('lang.save')}}</button>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="close_modol_insert" class="btn btn-default"
-                        data-dismiss="modal">Đóng</button>
+                        data-dismiss="modal">{{__('lang.close')}}</button>
                 </div>
             </div>
         </div>

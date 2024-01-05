@@ -14,26 +14,26 @@
             <div class="inqbox">
                 <div class="inqbox-content">
                     <span class="text-muted small pull-right"><i class="fa fa-clock-o"></i></span>
-                    <h2>Đơn hàng</h2>
+                    <h2>{{__('lang.order')}}</h2>
                     <div class="input-group">
-                        <input type="text" placeholder="Nhập mã đơn hàng, tên sản phẩm, tên số điện thoại khách hàng" id="key_search" value=""
+                        <input type="text" placeholder="{{__('lang.nhap_ma_don_hang_tensanpham_sdt_ten_khach_hang')}}" id="key_search" value=""
                             class="input form-control">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn btn-primary" onclick="show_product_order(1)"> <i
-                                    class="fa fa-search"></i>Tìm kiếm</button>
+                                    class="fa fa-search"></i>{{__('lang.search')}}</button>
                         </span>
                     </div>
                     <div class="clients-list">
                         
                         <ul class="nav nav-tabs tab-border-top-danger mt-2">
                             <div class="form-group col-md-2">
-                                <label for="inputState">Trạng thái</label>
+                                <label for="inputState">{{__('lang.status')}}</label>
                                 <br />
                                 <select onchange="show_product_order(1)" id="status_filter" style="height:40px;width: 150px;">
-                                    <option value="">Tất cả</option>
-                                    <option value="wait">Chờ xử lý</option>
-                                    <option value="finish">Hoàn thành</option>
-                                    <option value="cancel">Hủy</option>
+                                    <option value="">{{__('lang.all')}}</option>
+                                    <option value="wait">{{__('lang.wait')}}</option>
+                                    <option value="finish">{{__('lang.finish')}}</option>
+                                    <option value="cancel">{{__('lang.cancel')}}</option>
                                 </select>
                             </div>
                         </ul>
@@ -49,19 +49,19 @@
 
                                             <tr>
                                                 <td></td>
-                                                <td>code</td>
+                                                <td>{{__('lang.code')}}</td>
                                                 <td>
 
                                                 </td>
-                                                <td>Tên sản phẩm</td>
-                                                <td>Số lượng</td>
-                                                <td>Tổng giá</td>
-                                                <td>Giảm giá</td>
-                                                <td>Nhận thưởng</td>
-                                                <td>Trạng thái</td>
-                                                <td>Khách hàng</td>
-                                                <td>Số điện thoại</td>
-                                                <td>Ngày tạo</td>
+                                                <td>{{__('lang.product_name')}}</td>
+                                                <td>{{__('lang.so_luong')}}</td>
+                                                <td>{{__('lang.total_price')}}</td>
+                                                <td>{{__('lang.giam_gia')}}</td>
+                                                <td>{{__('lang.nhan_thuong')}}</td>
+                                                <td>{{__('lang.status')}}</td>
+                                                <td>{{__('lang.customer')}}</td>
+                                                <td>{{__('lang.phone')}}</td>
+                                                <td>{{__('lang.date_create')}}</td>
                                                 <td></td>
                                             </tr>
                                             <tbody id="content_product">
@@ -74,9 +74,9 @@
                                 <div class="form-inline pull-right">
                                     <div class="form-group">
                                         << <a id="page_back" onclick="next_page('back')" style="color: #303030;"><span
-                                                id="txt_page_before">Trang sau</span></a>&nbsp;&nbsp;&nbsp; <a
+                                                id="txt_page_before">Back</span></a>&nbsp;&nbsp;&nbsp; <a
                                                 id="page_next" onclick="next_page('next')"><span
-                                                    id="txt_page_after">Trang trước</span></a>>>
+                                                    id="txt_page_after">Next</span></a>>>
 
                                     </div>
                                 </div>

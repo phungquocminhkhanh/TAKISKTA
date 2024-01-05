@@ -14,7 +14,7 @@
             <div class="inqbox">
                 <div class="inqbox-content">
                     <span class="text-muted small pull-right"><i class="fa fa-clock-o"></i></span>
-                    <h2>Đơn hàng</h2>
+                    <h2>{{__('lang.d_order')}}</h2>
 
                     <div class="clients-list">
 
@@ -30,7 +30,7 @@
 
                                             <tr>
                                                 <td></td>
-                                                <td>Khu vực</td>
+                                                <td>{{__('lang.d_area')}}</td>
                                                 <td></td>
                                             </tr>
                                             <tbody id="content_exchange">
@@ -67,23 +67,24 @@
                 <div class="modal-body">
 
                     <form id="insert_form">
-                        <label>Khu vực</label>
+                        <label>{{__('lang.d_area')}}</label>
                         <input type="text" id="exchange_name" class="form-control" readonly>
                         <br />
                         <br />
-                        <label>Hỉnh ảnh</label>
+                        <label>{{__('lang.d_photo')}}</label>
                         <input type="file" id="exchange_icon" class="form-control" min="1" value="1"
                             onchange="select_img('exchange_icon','content_img','100%')" />
                         <div id="content_img" class="mt-2 text-center">
                         </div>
                         <br />
-                        <button type="button" name="edit" id="btn_insert" class="btn btn-success">Cập nhật</button>
+                        <button type="button" name="edit" id="btn_insert"
+                            class="btn btn-success">{{__('lang.d_update')}}</button>
 
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="close_modol_insert" class="btn btn-default"
-                        data-dismiss="modal">Đóng</button>
+                        data-dismiss="modal">{{__('lang.close')}}</button>
                 </div>
             </div>
         </div>

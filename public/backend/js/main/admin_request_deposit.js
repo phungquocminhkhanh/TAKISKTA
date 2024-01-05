@@ -60,10 +60,12 @@ function show_deposit(page) {
                     <td>${item.request_code}</td>
                     <td>${money(item.request_value)} VND</td>
                     <td>${item.request_created}</td>
-                    <td>${(item.customer_virtual=="N")? "thường" : "demo"}</td>
+                    <td>${
+                        item.customer_virtual == "N" ? lang_thuong : "demo"
+                    }</td>
                     <td><button class="btn btn-primary btn-sm" onClick="detail_deposit(${
                         item.id_request
-                    })" ><i class="fa fa-info"></i> Chi tiết</button></td>
+                    })" ><i class="fa fa-info"></i> ${lang_detail}</button></td>
                 </tr> `;
             });
 
@@ -88,23 +90,23 @@ function detail_deposit(id) {
             var output = `
            <div class="inqbox-content">
            <div id="contact-1" class="tab-pane active">
-               <center><h3><strong>Chi tiết yêu cầu giao dịch</strong></h3></center>
+               <center><h3><strong>${lang_detail}</strong></h3></center>
           </div>
           
            <div class="tab-content" id="content-order" style="width: 100%;height: 557px;overflow: auto;">
            
            <table class="detai_deal">
                    <tr>
-                       <td><p>Họ & Tên:</p></td>
+                       <td><p>${lang_fullname}:</p></td>
                        <td><p>${item.customer_name}</p></td>
                    </tr>
                    
                    <tr>
-                       <td><p>Mã lệnh:</p></td>
+                       <td><p>${lang_code}:</p></td>
                        <td><p>${item.request_code}</p></td>
                    </tr>
                    <tr>
-                       <td><p>Thời gian:</p></td>
+                       <td><p>${lang_date}:</p></td>
                        <td><p>${item.request_time_complete}</p></td>
                    </tr>
                   
@@ -130,14 +132,14 @@ function create_deposit() {
     var output = `
            <div class="inqbox-content">
            <div id="contact-1" class="tab-pane active">
-               <center><h3 ><strong>Tạo lệnh xác nhận nạp tiền</strong></h3></center>
+               <center><h3 ><strong>${lang_tao_lenh_nap_tien}</strong></h3></center>
           </div>
           
            <div class="tab-content" id="content-order" style="width: 100%;height: 557px;overflow: auto;">
            
            <div>
                 <tr>
-                    <td><p>Tên khách hàng: <a onClick="list_customer()" data-toggle="modal" data-target="#request_deposit"><img src="../images/chon.svg"></a></p></td>
+                    <td><p>${lang_fullname}: <a onClick="list_customer()" data-toggle="modal" data-target="#request_deposit"><img src="../images/chon.svg"></a></p></td>
                     
                 </tr>
                
@@ -157,7 +159,7 @@ function create_deposit() {
 function list_customer() {
     if ($("#customer_virtual").val() == 'N') {
         $("#khuyenmai").show();
-        $("#khuyenmai").html(`<option value="1">Ví tài khoản</option>`)
+        $("#khuyenmai").html(`<option value="1">${lang_vi_tai_khoan}</option>`);
     } else {
         $("#khuyenmai").hide();
     }
@@ -227,20 +229,20 @@ function choose_customer() {
     var id_customer = $(':radio:checked').val();
     var customer_name = $(":radio:checked").attr('data-customer_name');
     if ($("#khuyenmai").val() == 1) {
-        type = "Ví tài khoản";
+        type = lang_vi_tai_khoan;
     } else if ($("#khuyenmai").val() == 2) {
-        type = "Ví giới thiệu"
+        type = "Ví giới thiệu";
     } else {
-        type = "Ví đầu tư"
+        type = "Ví đầu tư";
     }
     if (typeof(id_customer) == "undefined") {
-        alert('Bạn chưa chọng khách hàng');
+        alert(lang_ban_chua_chon_khach_hang);
     } else {
        
         var output = `
                 <div class="inqbox-content">
                 <div id="contact-1" class="tab-pane active">
-                    <center><h3><strong>Tạo lệnh xác nhận nạp tiền</strong></h3></center>
+                    <center><h3><strong>${lang_tao_lenh_nap_tien}</strong></h3></center>
                 </div>
                 <div class="tab-content" id="content-order" style="width: 100%;height: 557px;overflow: auto;">
                 <div>
@@ -256,19 +258,19 @@ function choose_customer() {
         if ($("#khuyenmai").val() == 1) {
             output += ` <tr>
 
-                    <td><p style="margin-top:14px">Số tiền nạp (VND):</p></td>
+                    <td><p style="margin-top:14px">${lang_so_tien_nap} (VND):</p></td>
                     <td><input type="text" min="1" id="depoit_money" placeholder="000.000.000" class="form-control request" data-type="currency"></td>
                    
                 
                 </tr>
                 
                 <tr>
-                <td><p style="margin-top:14px">Số tiền khuyễn mãi(VND):</p></td>
+                <td><p style="margin-top:14px">${lang_so_tien_khuyen_mai} (VND):</p></td>
                     <td><input type="text" onkeyup="disable_chutich()" min="1" id="reward_money" placeholder="000.000.000" class="form-control bonus" data-type="currency"></td>
                      
                 </tr>
                 <tr>
-                <td><p style="margin-top:14px">Chú thích: </p></td>
+                <td><p style="margin-top:14px">${lang_chu_thich}: </p></td>
                     <td><p><textarea readonly rows="3" id="bonus_description" value="" class="form-control"></textarea></p></td>
                 </tr>
                 <tr>
@@ -279,7 +281,7 @@ function choose_customer() {
         } else {
             if ($("#khuyenmai").val() == 2) {
                 output += `<tr>
-                        <td><p>Số tiền nạp (VND):</p></td>
+                        <td><p>${lang_so_tien_nap} (VND):</p></td>
                             <td><input type="text" min="1" id="reward_money" placeholder="000.000.000" class="form-control request" data-type="currency"></td>
                              <small id="out_usd_request" style="color:red"></small>
                              <br />
@@ -307,7 +309,7 @@ function choose_customer() {
                
                 </div>
                 <hr>
-                <button class="btn btn-danger btn-sm btn-block" onClick="create_request_comfirm(${id_customer})">Tạo mới</button>
+                <button class="btn btn-danger btn-sm btn-block" onClick="create_request_comfirm(${id_customer})">${lang_create}</button>
                 </div>
                 </div>
                     `;
@@ -353,7 +355,7 @@ function create_request_comfirm(id_customer) {
     if (type == 1) {
         console.log(id_customer);
         $('#mess_deposit').html(``);
-        var r = confirm('Kiểm tra thông tin trước khi xác nhận');
+        var r = confirm(lang_kiem_tra_thong_tin_truoc_khi_xac_nhan);
         if (r == true) {
             $.ajax({
                 url: urlapi,
@@ -378,7 +380,7 @@ function create_request_comfirm(id_customer) {
                         console.log(id_customer);
                         io_socket.emit('reload_data_customer',{id_customer:id_customer+""});
                         show_deposit(1);
-                        alert('Nạp tiền thành công');
+                        alert(response.message);
                         window.location.replace('#content-deposit')
                         $("#detail_deposit").html('');
                     } else {
@@ -496,7 +498,7 @@ function search_request_deposit() {
                     <td>${money(item.request_value)} VND</td>
                     <td>${item.request_created}</td>
                     <td>${type}</td>
-                    <td><button class="btn btn-primary btn-sm" onClick="detail_deposit(${item.id_request})" ><i class="fa fa-info"></i> Chi tiết</button></td>
+                    <td><button class="btn btn-primary btn-sm" onClick="detail_deposit(${item.id_request})" ><i class="fa fa-info"></i> ${lang_detail}</button></td>
                 </tr> `;
             });
 

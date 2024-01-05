@@ -24,19 +24,19 @@
                         <ul class="nav nav-pills nav-stacked nav-inq" id="list_manage">
                             <li class="active">
                                 <a href="{{ route('admin_dashboard') }}"><i class="fa fa-home"></i> <span
-                                        class="nav-label">Trang chủ</span></a>
+                                        class="nav-label">{{__('lang.d_home')}}</span></a>
                             </li>
                             @if($data_admin->type_account=='admin')
                             @foreach ($data_admin->role_permission as $k=>$v)
                             @if($v->permission=="module_exchange")
                             <li class="nav-parent">
-                            
-                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
-                                        class="nav-label">Quản lý khu vực</span></a>
+
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
+                                        height="25px">&nbsp;&nbsp;<span class="nav-label">{{__('lang.quan_ly_khu_vuc')}}</span></a>
                                 <ul class="children nav">
-                                    <li><a href="{{ URL::to('admin/manage-exchange') }}">Danh sách khu vực</a>
+                                    <li><a href="{{ URL::to('admin/manage-exchange') }}">{{__('lang.d_list_area')}}</a>
                                     </li>
-                                    <li><a href="{{ URL::to('admin/manage-period') }}">Danh sách thời gian</a>
+                                    <li><a href="{{ URL::to('admin/manage-period') }}">{{__('lang.d_list_time')}}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -45,14 +45,16 @@
                             <li class="nav-parent">
 
                                 <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
-                                        height="25px">&nbsp;&nbsp;<span class="nav-label">Quản lý Tài
-                                        Khoản</span></a>
+                                        height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">{{__('lang.d_account_manage')}}</span></a>
                                 <ul class="children nav">
-                                    <li><a href="{{ URL::to('admin/manage-account') }}">Danh sách Tài khoản</a>
+                                    <li><a
+                                            href="{{ URL::to('admin/manage-account') }}">{{__('lang.d_list_account')}}</a>
                                     </li>
 
-                                    <li><a href="{{ URL::to('admin/manage-permission-type') }}">Quyền hạn và
-                                            loại tài khoản</a></li>
+                                    <li><a
+                                            href="{{ URL::to('admin/manage-permission-type') }}">{{__('lang.d_permission_type_account')}}</a>
+                                    </li>
 
                                 </ul>
                             </li>
@@ -62,10 +64,11 @@
                             <li class="nav-parent">
 
                                 <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
-                                        height="25px">&nbsp;&nbsp;<span class="nav-label">Quản lý mã mời</span></a>
+                                        height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">{{__('lang.d_code_manage')}}</span></a>
 
                                 <ul class="children nav">
-                                    <li><a href="{{ URL::to('admin/manage-introduce') }}">Danh sách mã mời</a>
+                                    <li><a href="{{ URL::to('admin/manage-introduce') }}">{{__('lang.d_list_code')}}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -73,88 +76,99 @@
 
                             @if($v->permission=="module_product")
                             <li class="nav-parent">
-                            
-                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
-                                        class="nav-label">Quản lý sản phẩm</span></a>
-                            
+
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
+                                        height="25px">&nbsp;&nbsp;<span class="nav-label">{{__('lang.quan_ly_san_pham')}}</span></a>
+
                                 <ul class="children nav">
-                                    <li><a href="{{ URL::to('admin/manage-product') }}">Danh sách sản phẩm</a>
+                                    <li><a
+                                            href="{{ URL::to('admin/manage-product') }}">{{__('lang.d_list_product')}}</a>
                                     </li>
                                 </ul>
                             </li>
                             @endif
                             @if($v->permission=="module_customer")
                             <li class="nav-parent">
-                            
-                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
-                                        class="nav-label">Quản lý khách hàng</span></a>
-                            
+
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
+                                        height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">{{__('lang.d_customer_manage')}}</span></a>
+
                                 <ul class="children nav">
-                                    <li><a href="{{ URL::to('admin/manage-customer') }}">Danh sách khách hàng</a>
+                                    <li><a
+                                            href="{{ URL::to('admin/manage-customer') }}">{{__('lang.d_list_customer')}}</a>
                                     </li>
                                 </ul>
                             </li>
                             @endif
                             @if($v->permission=="module_confirm_deposit")
                             <li class="nav-parent">
-                            
-                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
-                                        class="nav-label">Quản lý nạp tiền</span></a>
-                            
+
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
+                                        height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">{{__('lang.d_deposit_manage')}}</span></a>
+
                                 <ul class="children nav">
-                                    <li><a href="{{ URL::to('admin/manage-deposit') }}">Danh sách nạp tiền</a>
+                                    <li><a
+                                            href="{{ URL::to('admin/manage-deposit') }}">{{__('lang.d_list_deposit')}}</a>
                                     </li>
                                 </ul>
                             </li>
                             @endif
                             @if($v->permission=="module_request_payment")
                             <li class="nav-parent">
-                            
-                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
-                                        class="nav-label">Quản lý rút tiền</span></a>
-                            
+
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
+                                        height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">{{__('lang.d_payment_manage')}}</span></a>
+
                                 <ul class="children nav">
-                                    <li><a href="{{ URL::to('admin/manage-payment') }}">Danh sách rút tiền</a>
+                                    <li><a
+                                            href="{{ URL::to('admin/manage-payment') }}">{{__('lang.d_list_payment')}}</a>
                                     </li>
                                 </ul>
                             </li>
                             @endif
                             @if($v->permission=="module_product_order")
                             <li class="nav-parent">
-                            
-                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
-                                        class="nav-label">Quản lý đơn hàng</span></a>
-                            
+
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
+                                        height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">{{__('lang.d_order_manage')}}</span></a>
+
                                 <ul class="children nav">
-                                    <li><a href="{{ URL::to('admin/manage-order') }}">Danh sách đơn hàng</a>
+                                    <li><a href="{{ URL::to('admin/manage-order') }}">{{__('lang.d_list_order')}}</a>
                                     </li>
                                 </ul>
                             </li>
                             @endif
                             @if($v->permission=="module_popup")
                             <li class="nav-parent">
-                            
-                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
-                                        class="nav-label">Quản lý popup</span></a>
-                            
+
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
+                                        height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">{{__('lang.d_popup_manage')}}</span></a>
+
                                 <ul class="children nav">
-                                    <li><a href="{{ URL::to('admin/manage-popup') }}">Danh sách popup</a>
+                                    <li><a href="{{ URL::to('admin/manage-popup') }}">{{__('lang.d_list_popup')}}</a>
                                     </li>
                                 </ul>
                             </li>
                             @endif
-                            
-                                                      
+
+
                             @endforeach
 
                             @if(isset($data_admin->admin_level) && $data_admin->admin_level == "2")
                             <li class="nav-parent">
-                            
-                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
+
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
+                                        height="25px">&nbsp;&nbsp;<span
                                         class="nav-label">{{__('lang.report_statistics')}}</span></a>
-                            
+
                                 <ul class="children nav">
-                                    <li><a href="{{ URL::to('admin/manage-report-deposit-payment') }}">{{__('lang.report_statistics')}}</a>
+                                    <li><a
+                                            href="{{ URL::to('admin/manage-report-deposit-payment') }}">{{__('lang.report_statistics')}}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -162,26 +176,29 @@
 
 
                             @elseif($data_admin->type_account=='sales')
-                                <li class="nav-parent">
-                                
-                                    <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
-                                            class="nav-label">Quản lý mã mời</span></a>
-                                
-                                    <ul class="children nav">
-                                        <li><a href="{{ URL::to('admin/manage-introduce') }}">Danh sách mã mời</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-parent">
-                                
-                                    <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px" height="25px">&nbsp;&nbsp;<span
-                                            class="nav-label">Quản lý khách hàng</span></a>
-                                
-                                    <ul class="children nav">
-                                        <li><a href="{{ URL::to('admin/manage-customer') }}">Danh sách khách hàng</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                            <li class="nav-parent">
+
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
+                                        height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">{{__('lang.d_code_manage')}}</span></a>
+
+                                <ul class="children nav">
+                                    <li><a href="{{ URL::to('admin/manage-introduce') }}">{{__('lang.d_list_code')}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-parent">
+
+                                <a href="#"><img src="{{asset('/images/icon_account.svg')}}" width="25px"
+                                        height="25px">&nbsp;&nbsp;<span
+                                        class="nav-label">{{__('lang.d_customer_manage')}}</span></a>
+
+                                <ul class="children nav">
+                                    <li><a
+                                            href="{{ URL::to('admin/manage-customer') }}">{{__('lang.d_list_customer')}}</a>
+                                    </li>
+                                </ul>
+                            </li>
                             @endif
                         </ul>
                     </div>

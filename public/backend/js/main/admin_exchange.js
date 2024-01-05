@@ -27,7 +27,7 @@ function show_exchange(page) {
                                
                                 <td>
                                     <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${lang_setting}
                                     <span class="caret"></span></button>
                                     <ul style="color:blue;" class="dropdown-menu">
                                         <li><a class="modal_edit" 
@@ -39,7 +39,7 @@ function show_exchange(page) {
                                                     v.exchange_icon
                                                 }"
                                             >
-                                            Sửa
+                                            ${lang_edit}
                                             </a>
                                         </li>
                                     </ul>

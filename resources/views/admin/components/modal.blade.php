@@ -3,13 +3,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Đổi lại mật khẩu</h4>
+                <h4 class="modal-title">{{__('lang.d_change_pw')}}</h4>
             </div>
             <div class="modal-body">
 
                 <form id="change_password_dashboard_account_form">
                     <div class="inqbox-content">
-                        <label>Mật khẩu cũ</label>
+                        <label>{{__('lang.d_old_pw')}}</label>
                         <div class="input-group" id="show_hide_password">
                             <input class="form-control" type="password" name="old_password" id="old_password">
 
@@ -19,7 +19,7 @@
                         </div>
                         <small id="erold_password" class="text-danger"></small><br /><br />
 
-                        <label>Mật khẩu mới</label>
+                        <label>{{__('lang.d_new_pw')}}</label>
                         <div class="input-group" id="show_hide_password2">
                             <input class="form-control" type="password" name="account_password"
                                 id="dashpassword_change">
@@ -31,7 +31,7 @@
                         <small id="dasherpassword" class="text-danger"></small>
                         <br />
                         <br />
-                        <label>Nhập lại mật khẩu</label>
+                        <label>{{__('lang.d_confirm_pw')}}</label>
                         <div class="input-group" id="show_hide_password3">
                             <input class="form-control" type="password" name="account_password2"
                                 id="dashpassword_change2">
@@ -60,20 +60,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Thông tin tài khoản</h4>
+                <h4 class="modal-title">{{__('lang.d_account_info')}}</h4>
             </div>
             <div class="modal-body">
                 <form id="profile_account_form">
                     <input type="hidden" name="detect" value="account_manager">
                     <input type="hidden" name="type_manager" value="update_account">
                     <input type="hidden" name="id_user" value="{{ $data_admin->id }}">
-                    <label>Họ và tên đầy đủ</label>
+                    <label>{{__('lang.d_fullname')}}</label>
                     <input type="text" name="full_name" id="eefullname" value="{{ $data_admin->account_fullname }}"
                         class="form-control" />
                     <small id="eerfullname" class="text-danger"></small>
                     <br />
                     @if(true)
-                    {{-- <label>Mã mời</label> --}}
+                    {{-- <label>{{__('lang.d_code')}}</label> --}}
                     <input type="hidden" name="account_code" id="eeeaccount_code"
                         value="{{ $data_admin->account_code }}" readonly class="form-control" />
                     <br />
@@ -84,7 +84,7 @@
                     <br />
                     @endif
 
-                    <label>Số điện thoại</label>
+                    <label>{{__('lang.phone')}}</label>
                     <input type="tel" id="eephone" name="phone_number" value="{{ $data_admin->account_phone }}"
                         onkeypress='return event.charCode >= 48 && event.charCode <= 57' onkeyup="" maxlength="10"
                         class="form-control">
@@ -122,7 +122,7 @@
         <div class="modal-content">
         </div>
         <div class="modal-body" id="content_alert_das">
-            <h3> Bạn có muốn đăng xuất không</h3>
+            <h3> {{__('lang.require_logout')}}</h3>
         </div>
         <div class="modal-footer">
             <form action="{{ URL::to('/page/logout') }}" method="get">
@@ -144,9 +144,9 @@
         </div>
 
         <button type="submid" class="btn btn-secondary" style="margin-left: 30%" data-toggle="modal"
-            data-target="#force-manage">Thoát quản lý</button>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#force-employ">Thoát nhân
-            viên</button>
+            data-target="#force-manage">{{__('lang.d_out_admin')}}</button>
+        <button type="button" class="btn btn-secondary" data-toggle="modal"
+            data-target="#force-employ">{{__('lang.d_out_employee')}}</button>
 
 
     </div>
@@ -156,7 +156,7 @@
         <div class="modal-content">
         </div>
         <div class="modal-body" id="content_alert_das">
-            <h3>Bạn có muốn cưỡng chế hết tài khoản quản lý trong ứng dụng này không</h3>
+            <h3>{{__('lang.d_require_force_admin')}}</h3>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" onclick="force_sign('admin')">Yes</button>
@@ -169,7 +169,7 @@
         <div class="modal-content">
         </div>
         <div class="modal-body" id="content_alert_das">
-            <h3>Bạn có muốn cưỡng chế hết tài khoản nhân viên trong ứng dụng này không</h3>
+            <h3>{{__('lang.d_require_force_employee')}}</h3>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" onclick="force_sign('employee')">Yes</button>

@@ -62,7 +62,7 @@ function show_product_order(page) {
                                 <td>${v.time_start}</td>
                                 <td>
                                     <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
+                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${lang_setting}
                                     <span class="caret"></span></button>
                                     <ul style="color:blue;" class="dropdown-menu">
                                         <li><a class="modal_cancel" 
@@ -78,7 +78,7 @@ function show_product_order(page) {
                                                 }"
                                                 data-code="${v.code}"
                                             >
-                                        Hủy đơn hàng</a></li>
+                                        ${lang_huy_don_hang}</a></li>
                                     </ul>
                                     </div>
                                 </td>

@@ -36,7 +36,7 @@ function show_introduce(page) {
                     btn_dieuhanh = "";    
                     if ($("#type_admin").val() == "1") {
                         btn_dieuhanh = `<div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${lang_setting}
                                         <span class="caret"></span></button>
                                         <ul style="color:blue;" class="dropdown-menu">
                                             <li><a class="modal_edit" 
@@ -46,7 +46,7 @@ function show_introduce(page) {
                                                     data-status="${v.status}"
 
                                                 >
-                                            Sửa</a></li>
+                                            ${lang_edit}</a></li>
                                         </ul>
                                     </div>`;
                     }
@@ -122,7 +122,7 @@ $(document).ready(function () {
         var formData = new FormData();
 
         if ($("#id_account_add").val() == "") {
-            alert("Chọn nhân viên");
+            alert(lang_chon_nhan_vien);
             return;
         }
         formData.append("detect", "introduce_manager");

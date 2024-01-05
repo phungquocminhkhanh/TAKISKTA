@@ -58,7 +58,7 @@ async function show_detail_account(id) {
                                  <div class="row m-b-lg">
                                     <div class="col-lg-12">
                                        <strong>
-                                     Họ và tên :
+                                     ${lang_fullname} :
                                        </strong>
                                        <strong style="float: right;">
                                        ${data.data[0].full_name}
@@ -81,14 +81,14 @@ async function show_detail_account(id) {
                                           <li class="list-group-item">Email:
                                              <span class="pull-right">${data.data[0].email}</span>
                                           </li>
-                                          <li class="list-group-item">Số điện thoại:
+                                          <li class="list-group-item">${lang_phone} ::
                                              <span class="pull-right">${data.data[0].phone_number}</span>
 
                                           </li>
                                        </ul>
                                        <strong>`;
 
-            if (data.data[0].type_account == "admin") output += `Quyền`;
+            if (data.data[0].type_account == "admin") output += `${lang_quyen}`;
 
             output += ` </strong>
                                        <ul class="list-group clear-list">`;
@@ -198,10 +198,10 @@ function disable_account(id, status) {
     let mess = "";
     if (status == "Y") {
         status_update = "N";
-        mess = "Bạn có chắc muốn vô hiệu hóa tài khoản này không !";
+        mess = lang_ban_co_chac_muon_vo_hieu_hoa;
     } else {
         status_update = "Y";
-        mess = "Bạn có chăc muốn mở lại tài khoản này không !";
+        mess = lang_ban_co_chac_muon_mo;
     }
     var r = confirm(mess);
     if (r == true) {
@@ -262,7 +262,7 @@ function author_account(id, type) {
 }
 
 function delete_account(id) {
-    r = confirm("Bạn có chắc muốn xóa tài khoản này không");
+    r = confirm(lang_ban_co_chac_muon_xoa);
     if (r == true) {
         $.ajax({
             url: urlapi,
@@ -372,28 +372,29 @@ function show_account(page) {
             let btn_phanquyen = "";
             $.each(response.data, function (k, v) {
                 text_status =
-                    v.status_employee == "Y" ? "Vô hiệu hóa" : "Mở tài khoản";
+                    v.status_employee == "Y"
+                        ? lang_vo_hieu_hoa
+                        : lang_mo_tai_khoan;
 
                 btn_phanquyen = "";
                 if (v.type_account == "admin") {
                     btn_phanquyen = `
-                        <li><a onclick="author_account('${v.id}','account')" data-toggle="modal" data-target="#author_account_Modal">Phân quyền quản lý</a></li>
+                        <li><a onclick="author_account('${v.id}','account')" data-toggle="modal" data-target="#author_account_Modal">${lang_phan_quyen_quan_ly}</a></li>
                        
                     `;
                 }
 
                 btn_dieuhanh = `
                      <div class="dropdown">
-                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
+                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${lang_setting}
                       <span class="caret"></span></button>
                       <ul style="color:blue;" class="dropdown-menu">
-                        <li><a onclick="edit_account('${v.id}')" data-toggle="modal" data-target="#edit_account_Modal">Sửa</a></li>
+                        <li><a onclick="edit_account('${v.id}')" data-toggle="modal" data-target="#edit_account_Modal">${lang_edit}</a></li>
                         ${btn_phanquyen}
-                        <li><a onclick="author_account('${v.id}','exchange')" data-toggle="modal" data-target="#author_exchange_Modal">Phân quyền sàn</a></li>
-                        <li><a onclick="change_password('${v.id}')" data-toggle="modal" data-target="#change_password_account_Modal">Đặt lại mật khẩu</a></li>
+                        <li><a onclick="change_password('${v.id}')" data-toggle="modal" data-target="#change_password_account_Modal">${lang_dat_lai_mat_khau}</a></li>
                         <li><a onclick="disable_account('${v.id}','${v.status_employee}')">${text_status}</a></li>
-                        <li><a onclick="delete_account('${v.id}')">Xóa tài khoản</a></li>
-                        <li><a onclick="show_detail_account('${v.id}')">Xem</a></li>
+                        <li><a onclick="delete_account('${v.id}')">${lang_xoa_tai_khoan}</a></li>
+                        <li><a onclick="show_detail_account('${v.id}')">${lang_view}</a></li>
                       </ul>
                     </div>
                 `;
@@ -463,7 +464,7 @@ function passwordChanged() {
     //     strength.innerHTML = '<span style="color:red">Yếu!</span>';
     // }
     if (false == enoughRegex.test(pwd.value)) {
-        strength.innerHTML = "Mật khẩu ít nhất 6 ký tự";
+        strength.innerHTML = lang_mat_khau_phai_co_it_nhat_6_ky_tu;
     } else {
         strength.innerHTML = "";
     }
@@ -495,7 +496,7 @@ function passwordChanged2() {
 
     //phần màu xanh khi nào cần thì khôi phục lại và xóa cái ở dưới đi
     if (false == enoughRegex.test(pwd.value)) {
-        strength.innerHTML = "Mật khẩu ít nhất 6 ký tự";
+        strength.innerHTML = lang_mat_khau_phai_co_it_nhat_6_ky_tu;
     } else {
         strength.innerHTML = "";
     }
@@ -576,7 +577,7 @@ function check_change_password() {
     );
     if (cpass == "" || cpass.length < 6) {
         flag = 1;
-        $("#cerpassword").html("Mật khẩu phải ít nhất 6 ký tự");
+        $("#cerpassword").html(lang_mat_khau_phai_co_it_nhat_6_ky_tu);
     } else {
         // if (mediumRegex.test(cpass) || strongRegex.test(cpass)) {
         //     $('#cerpassword').html('')
@@ -586,13 +587,13 @@ function check_change_password() {
         // }
         if (cpass != cpass2) {
             flag = 1;
-            $("#cerpassword2").html("Mật khẩu nhập lại không đúng");
+            $("#cerpassword2").html(lang_mat_khau_nhap_lai_khong_dung);
         } else {
             $("#cerpassword2").html("");
             if (cpass.search(" ") == -1) $("#cerpassword").html("");
             else {
                 flag = 1;
-                $("#cerpassword").html("Mật khẩu không được có ký tự dấu cách");
+                $("#cerpassword").html(lang_mat_khau_khong_co_dau_cach);
             }
         }
     }
@@ -638,7 +639,7 @@ function check_einput() {
 
 function KT_sodienthoai(sdt) {
     if ((sdt.length < 10 || sdt.length > 10) && sdt.length > 0) {
-        $("#ersdt").html("Số điện thoại gồm 10 số");
+        $("#ersdt").html("");
         return false;
     } else {
         $("#ersdt").html("");
@@ -648,7 +649,7 @@ function KT_sodienthoai(sdt) {
 
 function KT_esodienthoai(sdt) {
     if ((sdt.length < 10 || sdt.length > 10) && sdt.length > 0) {
-        $("#eersdt").html("Số điện thoại gồm 10 số");
+        $("#eersdt").html("");
         return false;
     } else {
         $("#eersdt").html("");
@@ -711,7 +712,7 @@ $(document).ready(function () {
     show_author();
     $("#insert_account_form").on("submit", function (event) {
         event.preventDefault();
-        if (check_input() == false) {
+        if (false) {
         } else {
             $.ajax({
                 url: urlapi,
@@ -777,11 +778,11 @@ $(document).ready(function () {
             },
             success: function (data) {
                 if (data.success == "true") {
-                    alert("Phân quyền thành công");
+                    alert(lang_phan_quyen_thanh_cong);
                     $("#close_modol_author").click();
                     show_detail_account(_id_user);
                 } else {
-                    alert("Phân quyền không thành công");
+                    alert(data.message);
                 }
             },
         });
@@ -809,10 +810,10 @@ $(document).ready(function () {
             },
             success: function (data) {
                 if (data.success == "true") {
-                    alert("Phân quyền thành công");
+                    alert(lang_phan_quyen_thanh_cong);
                     $("#close_modol_exchange").click();
                 } else {
-                    alert("Phân quyền không thành công");
+                    alert(data.message);
                 }
             },
         });

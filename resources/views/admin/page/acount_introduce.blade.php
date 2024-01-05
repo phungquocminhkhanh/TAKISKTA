@@ -16,12 +16,13 @@
             <div class="inqbox">
                 <div class="inqbox-content">
                     <span class="text-muted small pull-right"><i class="fa fa-clock-o"></i></span>
-                    <h2>Mã mời</h2>
+                    <h2>{{__('lang.ma_moi')}}</h2>
                     <div class="input-group">
-                        <input type="text" placeholder="Nhập mã" id="key_search" value="" class="input form-control">
+                        <input type="text" placeholder="{{__('lang.d_enter_code')}}" id="key_search" value=""
+                            class="input form-control">
                         <span class="input-group-btn">
                             <button type="button" class="btn btn btn-primary" onclick="show_introduce(1)"> <i
-                                    class="fa fa-search"></i>Tìm kiếm</button>
+                                    class="fa fa-search"></i>{{__('lang.search')}}</button>
                         </span>
                     </div>
                     <div class="clients-list">
@@ -35,18 +36,18 @@
                         @endif
                         <ul class="nav nav-tabs tab-border-top-danger mt-2">
                             <div class="form-group col-md-2">
-                                <label for="inputState">Trạng thái</label>
+                                <label for="inputState">{{__('lang.d_status')}}</label>
                                 <br />
                                 <select onchange="show_introduce(1)" id="status_filter"
                                     style="height:40px;width: 150px;">
-                                    <option value="">Tất cả</option>
-                                    <option value="open">Mở</option>
-                                    <option value="close">Đóng</option>
+                                    <option value="">{{__('lang.d_all')}}</option>
+                                    <option value="open">{{__('lang.d_open')}}</option>
+                                    <option value="close">{{__('lang.close')}}</option>
                                 </select>
                             </div>
                             @if($data_admin->id_type=="1" || $data_admin->id_type=="2")
                             <div class="form-group col-md-2">
-                                <label for="inputState">Nhân viên</label>
+                                <label for="inputState">{{__('lang.sale')}}</label>
                                 <br />
                                 <select onchange="show_introduce(1)" id="id_account_filter"
                                     style="height:40px;width: 150px;">
@@ -67,12 +68,12 @@
 
                                             <tr>
                                                 <td></td>
-                                                <td>Nhân viên</td>
-                                                <td>Mã mời</td>
-                                                <td>Tổng số lần</td>
-                                                <td>Đã sử dụng</td>
-                                                <td>Trạng thái</td>
-                                                <td>Ngày tạo</td>
+                                                <td>{{__('lang.sale')}}</td>
+                                                <td>{{__('lang.d_code')}}</td>
+                                                <td>{{__('lang.d_total')}}</td>
+                                                <td>{{__('lang.d_used')}}</td>
+                                                <td>{{__('lang.d_status')}}</td>
+                                                <td>{{__('lang.d_create_date')}}</td>
                                                 <td></td>
                                             </tr>
                                             <tbody id="content_introduce">
@@ -85,9 +86,9 @@
                                 <div class="form-inline pull-right">
                                     <div class="form-group">
                                         << <a id="page_back" onclick="next_page('back')" style="color: #303030;"><span
-                                                id="txt_page_before">Trang sau</span></a>&nbsp;&nbsp;&nbsp; <a
-                                                id="page_next" onclick="next_page('next')"><span
-                                                    id="txt_page_after">Trang trước</span></a>>>
+                                                id="txt_page_before">back</span></a>&nbsp;&nbsp;&nbsp;
+                                            <a id="page_next" onclick="next_page('next')"><span
+                                                    id="txt_page_after">next</span></a>>>
 
                                     </div>
                                 </div>
@@ -107,32 +108,32 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Thêm mã mời</h4>
+                    <h4 class="modal-title">{{__('lang.d_add_code')}}</h4>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="insert_form">
-                        <label>Nhân viên</label>
+                        <label>{{__('lang.sale')}}</label>
                         <select id="id_account_add" class="form-control">
 
                         </select>
                         <br />
-                        <label>Số lượng</label>
+                        <label>{{__('lang.d_quantity')}}</label>
                         <input type="number" id="quantity" class="form-control" min="1" value="10" />
                         <br />
-                        <label>Trạng thái</label>
+                        <label>{{__('lang.d_status')}}</label>
                         <select id="status_add" class="form-control">
-                            <option value="open">Mở</option>
-                            <option value="close">Đóng</option>
+                            <option value="open">{{__('lang.d_open')}}</option>
+                            <option value="close">{{__('lang.close')}}</option>
                         </select>
                         <br />
                         <br />
                         <button type="button" name="insert" id="btn_insert_introduce"
-                            class="btn btn-success">Thêm</button>
+                            class="btn btn-success">{{__('lang.d_add')}}</button>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="close_modol_insert" class="btn btn-default"
-                        data-dismiss="modal">Đóng</button>
+                        data-dismiss="modal">{{__('lang.close')}}</button>
                 </div>
             </div>
         </div>

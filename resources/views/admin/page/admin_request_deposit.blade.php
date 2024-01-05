@@ -19,12 +19,11 @@
                     <span class="text-muted small pull-right"></span>
                     <h2></h2>
                     <div class="input-group">
-                        <input type="text" placeholder="Nhập tên, số điện thoại, mã lệnh" id="key_seach"
+                        <input type="text" placeholder="{{__('lang.nhap_ten_sdt_malenh')}}" id="key_seach"
                             class="input form-control">
                         <span class="input-group-btn">
 
-                            <button onclick="show_deposit(1)" type="button" class="btn btn btn-primary">Tìm
-                                kiếm</button>
+                            <button onclick="show_deposit(1)" type="button" class="btn btn btn-primary">{{__('lang.search')}}</button>
 
                     </div>
                     <div class="clients-list">
@@ -35,12 +34,12 @@
                                         <table class="table table-striped table-hover">
                                             <tr>
                                                 <th></th>
-                                                <th>Họ và tên</th>
-                                                <th>Số điện thoại</th>
-                                                <th>Mã lệnh</th>
-                                                <th>Nạp tiền</th>
-                                                <th>Ngày giao dịch</th>
-                                                <th>Loại</th>
+                                                <th>{{__('lang.fullname')}}</th>
+                                                <th>{{__('lang.phone')}}</th>
+                                                <th>{{__('lang.code')}}</th>
+                                                <th>{{__('lang.deposit')}}</th>
+                                                <th>{{__('lang.date_transaction')}}</th>
+                                                <th>{{__('lang.type')}}</th>
                                                 <th>
                                                     @if($data_admin->id_type=="1")
 
@@ -62,9 +61,9 @@
                                 <div class="form-inline pull-right">
                                     <div class="form-group" id="div_nap_tien">
                                         << <a id="page_back" onclick="next_page('back')" style="color: #303030;"><span
-                                                id="txt_page_before">Trang sau</span></a>&nbsp;&nbsp;&nbsp; <a
+                                                id="txt_page_before">Back</span></a>&nbsp;&nbsp;&nbsp; <a
                                                 id="page_next" onclick="next_page('next')"><span
-                                                    id="txt_page_after">Trang trước</span></a>>>
+                                                    id="txt_page_after">Next</span></a>>>
 
                                     </div>
                                 </div>
@@ -79,7 +78,7 @@
                 <div class="inqbox-content">
                     <div id="contact-1" class="tab-pane active">
                         <center>
-                            <h3><strong>Chi tiết yêu cầu giao dịch</strong></h3>
+                            <h3><strong>{{__('lang.detail')}}</strong></h3>
                         </center>
                     </div>
                     <div class="tab-content" id="content-order" style="width: 100%;height: 557px;overflow: auto;">
@@ -90,22 +89,22 @@
 
                     </div>
                     <button type="button" data-toggle="modal" data-target="#reason_refuse"
-                        class="btn btn-secondary btn-sm btn-block">Từ chối</button>
-                    <button class="btn btn-danger btn-sm btn-block"> Xác nhận</button>
+                        class="btn btn-secondary btn-sm btn-block">{{__('lang.refuse')}}</button>
+                    <button class="btn btn-danger btn-sm btn-block">{{__('lang.confirm')}}</button>
                 </div>
             </div>
         </div>
         {{----- dialog filter request payment --}}
         <dialog id="filter_deposit1">
             <form method="dialog">
-                <p><label>Thời gian bắt đầu:</label></p>
+                <p><label>{{__('lang.date_start')}}:</label></p>
                 <input type="Date" class="form-control" id="start_time_request">
-                <p><label>Thời gian kết thúc:</label></p>
+                <p><label>{{__('lang.date_end')}}:</label></p>
                 <input type="Date" class="form-control" id="finish_time_request">
                 <center>
                     <menu class="menu">
-                        <button class="btn btn-secondary">Hủy </button>
-                        <button class="btn btn-danger" onClick="filter_request_deposit()">Tìm kiếm</button>
+                        <button class="btn btn-secondary">{{__('lang.cancel')}} </button>
+                        <button class="btn btn-danger" onClick="filter_request_deposit()">{{__('lang.search')}}</button>
                     </menu>
                 </center>
             </form>
@@ -118,12 +117,12 @@
                     <div class="modal-header">
                         <button type="button" class="close" id="close_modal" data-dismiss="modal">&times;</button>
                         <center>
-                            <h2 class="modal-title" style="color:black"><strong>Chọn: </strong></h2>
+                            <h2 class="modal-title" style="color:black"><strong>{{__('lang.select')}}: </strong></h2>
                         </center>
                         <center>
                             <select style="font-weight: bold" onchange="list_customer()" id="customer_virtual">
-                                <option value="N">Tài khoản thường</option>
-                                <option value="Y">Tài khoản demo</option>
+                                <option value="N">{{__('lang.taikhoan_thuong')}}</option>
+                                <option value="Y">{{__('lang.taikhoan_demo')}}</option>
                             </select><br /><br />
                             <select style="font-weight: bold" id="khuyenmai">
 
@@ -132,11 +131,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="input-group">
-                            <input type="text" placeholder="Tên khách hàng, số điện thoại" id="id_customer_search"
+                            <input type="text" placeholder="{{__('lang.enter_name_phone')}}" id="id_customer_search"
                                 class="input form-control">
                             <span class="input-group-btn">
-                                <button onclick="search_customer(1)" type="button" class="btn btn btn-primary">Tìm
-                                    kiếm</button>
+                                <button onclick="search_customer(1)" type="button" class="btn btn btn-primary">{{__('lang.search')}}</button>
                         </div>
                         <br />
                         <form id="form_request_deposit">
@@ -145,8 +143,8 @@
                                 style="width: 100%;height: 300px;overflow: auto;">
                                 <table class="table table-striped table-hover">
                                     <tr>
-                                        <th>Họ và tên</th>
-                                        <th>Số điện thoại</th>
+                                        <th>{{__('lang.fullname')}}</th>
+                                        <th>{{__('lang.phone')}}</th>
 
                                         <th style="20px"></th>
                                     </tr>

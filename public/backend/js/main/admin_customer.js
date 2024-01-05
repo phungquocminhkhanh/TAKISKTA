@@ -18,7 +18,9 @@ function check_pass_dashboard22() {
     );
     if (cpass3 == "" || cpass3.length < 6) {
         flag = 1;
-        $("#dasherpassword_customer").html("Mật khẩu phải ít nhất 6 ký tự");
+        $("#dasherpassword_customer").html(
+            lang_mat_khau_phai_co_it_nhat_6_ky_tu
+        );
     } else {
         // if (mediumRegex.test(cpass) || strongRegex.test(cpass)) {
         //     $('#dasherpassword').html('')
@@ -28,7 +30,9 @@ function check_pass_dashboard22() {
         // }
         if (cpass3 != cpass4 && cpass3 != "") {
             flag = 1;
-            $("#dasherpassword2_customer").html("Mật khẩu nhập lại không đúng");
+            $("#dasherpassword2_customer").html(
+                lang_mat_khau_nhap_lai_khong_dung
+            );
         } else {
             $("#dasherpassword2_customer").html("");
             if (cpass3.search(" ") == -1)
@@ -36,7 +40,7 @@ function check_pass_dashboard22() {
             else {
                 flag = 1;
                 $("#dasherpassword_customer").html(
-                    "Mật khẩu không được có ký tự dấu cách"
+                    lang_mat_khau_khong_co_dau_cach
                 );
             }
         }
@@ -50,7 +54,7 @@ function quen_mk(customer_name) {
     $("#detail_customer_modal").modal("hide");
 }
 function delete_customer(id) {
-    r = confirm("Bạn có chắc muốn xóa tài khoản này không");
+    r = confirm(lang_ban_co_chac_muon_xoa);
     if (r == true) {
         $.ajax({
             url: urlapi,
@@ -86,6 +90,7 @@ function edit_customer(id_customer) {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
         success: function (data) {
+            console.log(data);
             if (data.success == "true") {
                 $.each(data.data, function (k, v) {
                     $("#ecustomer_name").val(v.customer_name);
@@ -118,6 +123,18 @@ function edit_customer(id_customer) {
                     }
                     
                     $("#ecompany_name").val(v.company_name);
+
+                    $("#ecustomer_virtual")
+                        .find("option[value='" + v.customer_virtual + "']")
+                        .prop("selected", true);
+                    if(v.customer_virtual == "Y")
+                    {
+                        $("#ecustomer_virtual").prop("disabled", true);
+                    }
+                    else
+                    {
+                        $("#ecustomer_virtual").prop("disabled", false);
+                    }
                 });
             }
         },
@@ -127,8 +144,8 @@ function disable_customer(id, disable) {
     var value_disable = disable == "N" ? "Y" : "N";
     var message =
         disable == "N"
-            ? "Bạn có chắc muốn khóa tài khoản này không ?"
-            : "Bạn có chắc muốn mở tài khoản này không ?";
+            ? lang_ban_co_chac_muon_vo_hieu_hoa
+            : lang_ban_co_chac_muon_mo;
     var r = confirm(message);
 
     if (r == true) {
@@ -321,8 +338,8 @@ function show_customer(page) {
                 $.each(response.data, function (k, v) {
                     text_disable =
                         v.customer_disable == "N"
-                            ? "Khóa tài khoản"
-                            : "Mở tài khoản";
+                            ? lang_khoa_tai_khoan
+                            : lang_mo_tai_khoan;
             
                     btn_dieuhanh = "";
                     btn_xem_vi = "";
@@ -333,7 +350,7 @@ function show_customer(page) {
                         i++;
                     }
                     if ($("#type_admin").val() == "1") {
-                        btn_xem_vi = `<li><a onclick="vi_customer('${v.id_customer}')" data-toggle="modal" data-target="#vi_customer">Xem ví</a></li>`;
+                        btn_xem_vi = `<li><a onclick="vi_customer('${v.id_customer}')" data-toggle="modal" data-target="#vi_customer">${lang_xem_vi}</a></li>`;
                     }
                     if (
                         $("#type_admin").val() == "1" ||
@@ -342,15 +359,15 @@ function show_customer(page) {
                         //admin vs chắm sóc
                         btn_dieuhanh = `
                                      <div class="dropdown">
-                                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
+                                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${lang_setting}
                                       <span class="caret"></span></button>
                                       <ul style="color:blue;" class="dropdown-menu">
-                                        <li><a onclick="edit_customer('${v.id_customer}')" data-toggle="modal" data-target="#detail_customer_modal">Sửa</a></li>
+                                        <li><a onclick="edit_customer('${v.id_customer}')" data-toggle="modal" data-target="#detail_customer_modal">${lang_edit}</a></li>
                                         ${btn_xem_vi}
                                         <li><a onclick="disable_customer('${v.id_customer}','${v.customer_disable}')">${text_disable}</a></li>
-                                        <li><a onclick="quen_mk('${v.customer_name}')" data-toggle="modal" data-target="#change_password_customer_Modal">Cập nhật mật khẩu</a></li>
-                                        <li><a onclick="show_ip('${v.id_customer}')">Xem IP</a></li>
-                                        <li><a onclick="show_div_detail('${v.id_customer}','${v.customer_name}','${v.customer_phone}')">Cài đặt mua</a></li>
+                                        <li><a onclick="quen_mk('${v.customer_name}')" data-toggle="modal" data-target="#change_password_customer_Modal">${lang_dat_lai_mat_khau}</a></li>
+                                        <li><a onclick="show_ip('${v.id_customer}')">${lang_view} IP</a></li>
+                                        <li><a onclick="show_div_detail('${v.id_customer}','${v.customer_name}','${v.customer_phone}')">${lang_cai_dat_mua}</a></li>
                                       </ul>
                                     </div>
                             `;
@@ -358,11 +375,11 @@ function show_customer(page) {
                     if ($("#type_admin").val() == "3") {
                         btn_dieuhanh = `
                                      <div class="dropdown">
-                                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cài đặt
+                                      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">${lang_setting}
                                       <span class="caret"></span></button>
                                       <ul style="color:blue;" class="dropdown-menu">
-                                        <li><a onclick="edit_customer('${v.id_customer}')" data-toggle="modal" data-target="#detail_customer_modal">Chi tiết</a></li>
-                                        <li><a onclick="show_div_detail('${v.id_customer}','${v.customer_name}','${v.customer_phone}')">Cài đặt mua</a></li>
+                                        <li><a onclick="edit_customer('${v.id_customer}')" data-toggle="modal" data-target="#detail_customer_modal">${lang_detail}</a></li>
+                                        <li><a onclick="show_div_detail('${v.id_customer}','${v.customer_name}','${v.customer_phone}')">${lang_cai_dat_mua}</a></li>
                                       </ul>
                                     </div>`;
                     }
@@ -422,7 +439,7 @@ function get_list_bank() {
     });
 }
 function show_sale() {
-    let output = `<option value="">Chọn</option>`;
+    let output = `<option value="">${lang_select}</option>`;
     $.ajax({
         type: "post",
         url: urlapi,
@@ -517,7 +534,8 @@ $(document).ready(function () {
             "customer_password_payment",
             $("#ecustomer_password_payment").val()
         );
-        formData.append("company_name", $("#ecompany_name").val());    
+        formData.append("company_name", $("#ecompany_name").val());  
+        formData.append("customer_virtual", $("#ecustomer_virtual").val());    
         $.ajax({
             url: urlapi,
             method: "post",
@@ -560,7 +578,7 @@ $(document).ready(function () {
 
             if (flag == 1) {
                 alert(
-                    "Số tiền thu hồi phải nhỏ hơn hoặc bằng số tiền trong ví"
+                    lang_so_tien_thu_hoi_phai_nho_hon_hoac_bang
                 );
             } else {
                 $.ajax({

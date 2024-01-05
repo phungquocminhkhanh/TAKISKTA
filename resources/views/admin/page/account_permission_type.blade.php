@@ -14,7 +14,7 @@
          <div class="inqbox">
             <div class="inqbox-content">
                <span class="text-muted small pull-right"></span>
-               <h2>Danh sách quyền hạn</h2>
+               <h2>{{__('lang.d_list_permission')}}</h2>
                <div class="clients-list">
 
                   <div class="tab-content">
@@ -24,8 +24,8 @@
                            <div class="table-responsive">
                               <table class="table table-striped table-hover">
                                  <tr>
-                                    <td>Quyền hạn</td>
-                                    <td>Mô tả</td>
+                                    <td>{{__('lang.d_permission')}}</td>
+                                    <td>{{__('lang.d_decription')}}</td>
                                  </tr>
                                  <tbody id="content-per">
 
@@ -46,7 +46,7 @@
          <div class="inqbox">
             <div class="inqbox-content">
                <span class="text-muted small pull-right"></span>
-               <h2>Danh sách loại tài khoản</h2>
+               <h2>{{__('lang.d_list_type_account')}}</h2>
                <div class="clients-list">
 
                   <div class="tab-content">
@@ -56,8 +56,8 @@
                            <div class="table-responsive">
                               <table class="table table-striped table-hover">
                                  <tr>
-                                    <td>Loại tài khoản</td>
-                                    <td>Mô tả</td>
+                                    <td>{{__('lang.d_type_account')}}</td>
+                                    <td>{{__('lang.d_decription')}}</td>
                                  </tr>
                                  <tbody id="content-type">
 

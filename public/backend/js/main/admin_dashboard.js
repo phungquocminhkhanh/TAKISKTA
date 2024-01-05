@@ -32,7 +32,7 @@ function check_pass_dashboard() {
     );
     if (cpass == "" || cpass.length < 6) {
         flag = 1;
-        $("#dasherpassword").html("Mật khẩu phải ít nhất 6 ký tự");
+        $("#dasherpassword").html(lang_mat_khau_phai_co_it_nhat_6_ky_tu);
     } else {
         // if (mediumRegex.test(cpass) || strongRegex.test(cpass)) {
         //     $('#dasherpassword').html('')
@@ -42,15 +42,13 @@ function check_pass_dashboard() {
         // }
         if (cpass != cpass2 && cpass != "") {
             flag = 1;
-            $("#dasherpassword2").html("Mật khẩu nhập lại không đúng");
+            $("#dasherpassword2").html(lang_mat_khau_nhap_lai_khong_dung);
         } else {
             $("#dasherpassword2").html("");
             if (cpass.search(" ") == -1) $("#dasherpassword").html("");
             else {
                 flag = 1;
-                $("#dasherpassword").html(
-                    "Mật khẩu không được có ký tự dấu cách"
-                );
+                $("#dasherpassword").html(lang_mat_khau_khong_co_dau_cach);
             }
         }
     }
@@ -61,7 +59,7 @@ function check_pass_dashboard() {
 
 function KT_esodienthoai(sdt) {
     if ((sdt.length < 10 || sdt.length > 10) && sdt.length > 0) {
-        $("#ersdt").html("Số điện thoại gồm 10 số");
+        $("#ersdt").html("");
         return false;
     } else {
         $("#ersdt").html("");
