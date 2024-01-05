@@ -196,9 +196,7 @@
                                         </div>
                                     </div>
                                     <br />
-                                    @if($data_admin->id_type=="1" || $data_admin->id_type=="2")
                                     <button type="button" id="btn_save_setting" class="btn btn-success w-100" />Cập nhật</form>
-                                    @endif
                                 </div>
                                 
                                
