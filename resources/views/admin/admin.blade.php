@@ -27,7 +27,7 @@
         $data_admin = Session::get('data_admin');
         $urlapi = env('API_WEB') ?? route('call_api');
         $urlserver = env('API_IMG');
-        $urlapi_2 = "http://qtc.test/AB_TIKIL/api_tikil/api/"; //"https://api-link.tikiskta.com";//
+        $urlapi_2 = env('API_LOCAL');
         $xtk = env('XTK');
         $socket = env('SOCKET');
         
@@ -132,8 +132,41 @@
         const lang_tao_lenh = "{{__('lang.tao_lenh')}}";
         
     </script>
-    <script src="{{ asset('backend/js/main/admin_local.js')}}"></script>
-    <script src="{{ asset('backend/js/main/admin_dashboard.js')}}"></script>
+    <script>
+        $("#btn_navbar").on("click",function(){
+            
+
+            if($(this).attr("data-click") == "1")
+            {
+                $(".body-small .navbar-static-side").show();
+                $(".body-small .navbar-static-side").css("width","140px");
+                $(this).css("margin-left","140px");
+                $(this).attr("data-click","2");
+            }
+            else
+            {
+                $(".body-small .navbar-static-side").hide();
+                $(this).css("margin-left","0px");
+                $(this).attr("data-click","1");
+            }
+            
+        });
+        function myFunction(width_manhinh) {
+            if (width_manhinh.matches) { // If media query matches
+                $("#btn_navbar").show();
+            } else {
+                $("#btn_navbar").hide();
+                $(".body-small .navbar-static-side").show();
+                $(".body-small .navbar-static-side").css("width","220px"); 
+            }
+            
+        }
+        var width_manhinh = window.matchMedia("(max-width: 768px)")
+        myFunction(width_manhinh) // Call listener function at run time
+        width_manhinh.addListener(myFunction) // Attach listener function on state changes
+    </script>
+    <script src="{{ asset('backend/js/main/admin_local.js?v'.env('THEME_VERSION','1'))}}"></script>
+    <script src="{{ asset('backend/js/main/admin_dashboard.js?v'.env('THEME_VERSION','1'))}}"></script>
 
     @yield('js')
 </body>

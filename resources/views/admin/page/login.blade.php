@@ -100,6 +100,6 @@
 <script src="{{ asset('backend/js/demo/sparkline-demo.js')}}"></script>
 <script src="{{ asset('backend/js/plugins/chartJs/Chart.min.js')}}"></script>
 <script src="{{ asset('backend/js/jquery-3.5.0.min.js') }}"></script>
-<script src="{{ asset('backend/js/main/admin_login.js?v4') }}"></script>
+<script src="{{ asset('backend/js/main/admin_login.js?v'.env('THEME_VERSION','1')) }}"></script>
 
 </html>

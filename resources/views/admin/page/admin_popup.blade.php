@@ -88,7 +88,7 @@
 
 @section('js')
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-<script src="{{ asset('backend/js/main/admin_popup.js') }}"></script>
+<script src="{{ asset('backend/js/main/admin_popup.js?v'.env('THEME_VERSION','1')) }}"></script>
 <script>
     CKEDITOR.replace( 'content');
 </script>

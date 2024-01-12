@@ -196,5 +196,5 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('backend/js/main/admin_period.js') }}"></script>
+<script src="{{ asset('backend/js/main/admin_period.js?v'.env('THEME_VERSION','1')) }}"></script>
 @endsection

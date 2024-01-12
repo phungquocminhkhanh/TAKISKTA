@@ -142,5 +142,5 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('backend/js/main/admin_introduce.js?v2') }}"></script>
+<script src="{{ asset('backend/js/main/admin_introduce.js?v'.env('THEME_VERSION','1')) }}"></script>
 @endsection

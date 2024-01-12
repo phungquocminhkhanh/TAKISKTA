@@ -1,5 +1,8 @@
 <div id="header">
     <nav class="navbar navbar-fixed-top white-bg show-menu-full" id="nav" role="navigation" style="margin-bottom: 0">
+        <div class="nav navbar-top-links navbar-left">
+            <img src="{{URL::to('images/navbar.png')}}" alt=""  width="30px" height="30px" id="btn_navbar" data-click="1">
+        </div>
         <ul class="nav navbar-top-links navbar-right">
 
             <li class="dropdown pull-right" style="margin-right: 30px !important">

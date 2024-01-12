@@ -137,5 +137,5 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('backend/js/main/admin_request_payment.js') }}"></script>
+<script src="{{ asset('backend/js/main/admin_request_payment.js?v'.env('THEME_VERSION','1')) }}"></script>
 @endsection
