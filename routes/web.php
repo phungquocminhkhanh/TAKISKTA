@@ -108,6 +108,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('manage-report-deposit-payment', function () {
         return view('admin.page.admin_report_nap_rut');
     })->middleware('auth.roles2:module_account');
+
+
+    // Route::get('manage-chat', function () {
+    //     return view('admin.page.admin_chat');
+    // })->middleware('auth.roles2:module_account');
    
 });
 

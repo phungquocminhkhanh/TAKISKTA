@@ -29,7 +29,6 @@ function show_product(page) {
         status: $("#status_filter").val(),
         filter: $("#key_search").val(),
     };
-    console.log(data_filter);
     $.ajax({
         url: urlapi,
         method: "POST",
